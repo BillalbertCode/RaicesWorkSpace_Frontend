@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Link from "next/link";
 import { TokenContext } from "@/contexts/TokenContext";
+import LoginModal from "../utils/LoginModal";
 
 const Header = () => {
   const { loginStatus, closedSession } = useContext(TokenContext)
@@ -23,9 +24,9 @@ const Header = () => {
                 <Link href="/profile" className="nav-link"> Profile</Link>
                 <button className="btn btn-dark btn-sm" onClick={() => closedSession()}>Cerrar Sesion</button>
               </>)
-              : <Link href="/login" className="nav-link"> Login</Link>}
+              : <LoginModal></LoginModal>}
           </div>
-          
+
           {/* Proximo */}
           <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

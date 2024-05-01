@@ -16,9 +16,10 @@ const Layout = () => {
                         <br />
                         Crear una plataforma de espacio de trabajo totalmente intuitiva e interactiva donde puedas crear un proyecto con sus ramas e invitar a otras personas a participar en tu area de trabajo, convirtiendo una tarea tediosa en una tarea muy facil, sencilla y eficaz
                     </p>
+
                     <div className="card text-bg-light " style={{ width: "70%", margin: "auto" }} >
                         <div className="card-header d-flex justify-content-between align-items-center bg-primary text-light">
-                            <h5 style={{}} >Iniciar Sesion</h5>
+                            <h5 >Iniciar Sesion</h5>
                         </div>
                         <div className="card-body px-4">
                             <LoginForm ></LoginForm>

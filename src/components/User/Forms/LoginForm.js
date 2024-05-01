@@ -28,7 +28,7 @@ const LoginForm = () => {
     return (
         <form onSubmit={(e) => fetchLogin(e, userData, handleSubmit)}>
             <div className="input-group input-group-sm mb-2">
-                <label htmlFor="emailgrop" className="pointer input-group-text bg-primary-subtle">Email </label>
+                <label htmlFor="emailgrop" className=" input-group-text bg-primary-subtle">Email </label>
                 <input type="email"
                     placeholder="email@example.com"
                     className="form-control "

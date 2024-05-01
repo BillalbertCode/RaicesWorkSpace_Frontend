@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { fetchPostRegister } from "@/utils/api/fetchPostRegister";
 import { handleChange } from "@/utils/handleChange"
+
 /**
  * 
  * @param {function} set - para setear el estado del padre 
@@ -18,89 +19,138 @@ const RegisterForm = ({ set }) => {
         sex: ''
     })
     return (
+
         //Peticion de registro
-        <form onSubmit={
-            (e) => fetchPostRegister
-                (e,
-                    userData,
-                    '/user/register',
-                    () => set(true)
-                )
-        }>
-            <div className="mb-3">
-                <h2>Registro</h2>
-                <label htmlFor="username" className="form-label">Nombre de usuario</label>
-                <input type="text"
-                    className="form-control"
-                    id="username" name="username"
-                    value={userData.username}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
+        <div className="row justify-content-center ">
+            <div className="col-md-6 mb-5 " >
+                <div className="card shadow">
+                    <div className="card-header bg-primary text-light">
+                        <h2>Raices - Registro</h2>
+                    </div>
+
+                    <div className="card-body">
+                        <form onSubmit={
+                            (e) => fetchPostRegister
+                                (e,
+                                    userData,
+                                    '/user/register',
+                                    () => set(true)
+                                )
+                        }>
+                            {/* Campo Username */}
+                            <div className="input-group mb-3">
+                                <label htmlFor="floatingUsername" className="input-group-text bg-primary-subtle">@</label>
+
+                                <div className="form-floating " title="ejemplo de username (agricultor123)">
+                                    <input type="text"
+                                        className="form-control"
+                                        id="floatingUsername"
+                                        name="username"
+                                        placeholder="username"
+                                        value={userData.username}
+                                        onChange={(e) => handleChange(e, userData, setUserData)}
+                                        required />
+                                    <label htmlFor="floatingUsername" >Username</label>
+                                </div>
+                            </div>
+
+                            {/* Campo Password */}
+                            <div className="input-group mb-3">
+                                <label htmlFor="floatingPassword" className="input-group-text bg-primary-subtle">#</label>
+
+                                <div className="form-floating">
+                                    <input type="password"
+                                        className="form-control"
+                                        placeholder="Contraseña"
+                                        id="floatingPassword"
+                                        name="password"
+                                        value={userData.password}
+                                        onChange={(e) => handleChange(e, userData, setUserData)}
+                                        required />
+                                    <label htmlFor="floatingPassword">Contraseña</label>
+                                </div>
+                            </div>
+
+                            {/* Campo Nombre y Apellido */}
+                            <div className="row mb-3">
+                                <div className="col">
+                                    <input type="text"
+                                        className="form-control"
+                                        placeholder="Nombre"
+                                        id="name"
+                                        name="name"
+                                        value={userData.name}
+                                        onChange={(e) => handleChange(e, userData, setUserData)}
+                                        required />
+                                </div>
+
+                                <div className="col">
+                                    <input type="text"
+                                        className="form-control"
+                                        placeholder="Apellido"
+                                        id="lastName"
+                                        name="lastName"
+                                        value={userData.lastName}
+                                        onChange={(e) => handleChange(e, userData, setUserData)}
+                                        required />
+                                </div>
+                            </div>
+
+                            {/* Campo email */}
+                            <div className=" mb-3">
+                                <input type="email"
+                                    className="form-control "
+                                    id="email"
+                                    placeholder="Email"
+                                    name="email"
+                                    value={userData.email}
+                                    onChange={(e) => handleChange(e, userData, setUserData)}
+                                    required />
+                            </div>
+
+                            {/* Campo fecha de nacimiento */}
+                            <div className="input-group mb-3">
+                                <label htmlFor="gear" className="input-group-text bg-primary-subtle">Fecha de Nacimiento </label>
+                                <input type="date"
+                                    id="gear"
+                                    className="form-control"
+                                    name="gear"
+                                    value={userData.gear}
+                                    onChange={(e) => handleChange(e, userData, setUserData)}
+                                    required />
+                            </div>
+
+                            {/* Campo genero */}
+                            <select className="form-select  mb-3"
+                                id="sex"
+                                name="sex"
+                                value={userData.sex}
+                                onChange={(e) => handleChange(e, userData, setUserData)} 
+                                required>
+                                <option value="" disabled>Genero</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                                <option value="Arbol">Arbol</option>
+                                <option value="Plantita">Plantita..</option>
+                                <option value="Raiz">Raiz</option>
+                            </select>
+                            <div className="form-check mb-3 mx-1">
+                                <input className="form-check-input" 
+                                type="checkbox"
+                                name="condiciones" 
+                                id="flexCheckDefault"
+                                 />
+                                <label className="form-check-label" htmlFor="flexCheckDefault">
+                                    Terminos y condiciones
+                                </label>
+                            </div>
+                            <button type="submit" className="btn btn-primary mx-1">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div className="mb-3">
-                <label htmlFor="email" className="form-label">Correo electrónico</label>
-                <input type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={userData.email}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="name" className="form-label">Nombre</label>
-                <input type="text"
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    value={userData.name}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="lastName" className="form-label">Apellido</label>
-                <input type="text"
-                    className="form-control"
-                    id="lastName"
-                    name="lastName"
-                    value={userData.lastName}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="password" className="form-label">Contraseña</label>
-                <input type="password"
-                    className="form-control"
-                    id="password"
-                    name="password"
-                    value={userData.password}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
-            </div>
-            <div className="form-outline mb-4">
-                <label className="form-label" htmlFor="gear">Gear</label>
-                <input type="text"
-                    id="gear"
-                    className="form-control"
-                    name="gear"
-                    value={userData.gear}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
-            </div>
-            <div className="form-outline mb-4">
-                <select className="form-control"
-                    id="sex"
-                    name="sex"
-                    value={userData.sex}
-                    onChange={(e) => handleChange(e, userData, setUserData)} required>
-                    <option value="" disabled>Select your option</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-                <label className="form-label" htmlFor="sex">Sex</label>
-            </div>
-            <button type="submit" className="btn btn-primary">Registrarse</button>
-        </form>
+        </div >
+
     )
 }
 export default RegisterForm;
