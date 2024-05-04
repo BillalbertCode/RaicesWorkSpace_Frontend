@@ -14,7 +14,7 @@ const ProfileForm = ({ token, set }) => {
         lastName: '',
         email: '',
         sex: '',
-        gear: ''
+        birthDate: ''
     })
     return (
         <div className="container">
@@ -70,12 +70,12 @@ const ProfileForm = ({ token, set }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="form-label" htmlFor="gear">Gear:</label>
+                    <label className="form-label" htmlFor="birthDate">birthDate:</label>
                     <input className="form-control"
                         type="text"
-                        id="gear"
-                        name="gear"
-                        value={profileData.gear}
+                        id="birthDate"
+                        name="birthDate"
+                        value={profileData.birthDate}
                         onChange={(e) => handleChange(e, profileData, setProfileData)}
                     />
                 </div>

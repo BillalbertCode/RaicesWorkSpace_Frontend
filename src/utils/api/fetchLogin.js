@@ -2,7 +2,7 @@
 // Recibe un objeto con los datos del formularo como dataSend
 // action es la accion que va a realizar pasale una funcion
 /**
- * @param {object} e - event object 
+ * @param {object} e - event object
  * @param {object} dataSend - datos a enviar 
  * @param {function} action - Solo esta accion espera los datos del token para setearlo
  */

@@ -13,7 +13,7 @@ const ProfileComponente = ({profileData}) => {
                     <li className="list-group-item">Apellido: {profileData.lastName}</li>
                     <li className="list-group-item">Email: {profileData.email}</li>
                     <li className="list-group-item">Genero: {profileData.sex}</li>
-                    <li className="list-group-item">Edad: {profileData.gear}</li>
+                    <li className="list-group-item">Edad: {profileData.birthDate}</li>
                 </ul>
             </div>
         </div>

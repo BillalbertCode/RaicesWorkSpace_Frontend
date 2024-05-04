@@ -18,8 +18,9 @@ export const fetchPostRegister = async (e, dataSend, endpoint, action) => {
             },
             body: JSON.stringify(dataSend)
         })
+        const data = await response.json()
         if (!response.ok) {
-            throw new Error('Error en la solicitud de registro')
+            throw new Error( data.error )
         }
 
         console.log('registro exitoso')

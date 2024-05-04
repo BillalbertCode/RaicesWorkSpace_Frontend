@@ -6,6 +6,7 @@ import Link from "next/link";
 import { TokenContext } from "@/contexts/TokenContext";
 import { handleChange } from "@/utils/handleChange"
 import { fetchLogin } from "@/utils/api/fetchLogin";
+import { validateFieldText } from '@/utils/validateFieldText';
 
 const LoginModal = () => {
     const [show, setShow] = useState(false);
@@ -26,6 +27,27 @@ const LoginModal = () => {
         password: ''
     })
 
+    const [formValidation, setFormValidation] = useState(false)
+
+    const validate = () => {
+        const validateErrors = {
+            username: validateFieldText(userData, 'username', 4, 32),
+            email: validateFieldText(userData, 'email', 6, 254, /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/),
+            password: validateFieldText(userData, 'password', 8, 128)
+        }
+
+        // Comprobamos si todas los valores del objeto son iguales
+        const invalidFields = Object.values(validateErrors).some(value => value !== 'valid')
+        //si todos los campos son correctos enviamos true para proseguir con el formulario
+        if (invalidFields) {
+            setFormValidation(validateErrors)
+            return (false)
+        } else {
+            setFormValidation(validateErrors)
+            return (true)
+        }
+    }
+
     //Accion esperada de fetchLogin
     const handleSubmit = (token) => {
         //Guardamos el token en el contexto
@@ -35,7 +57,7 @@ const LoginModal = () => {
     }
     return (
         <>
-        {/* Boton a cambiar pasar solo la funcion al padre para que controle el evento de click con un boton propio  */}
+            {/* Boton a cambiar pasar solo la funcion al padre para que controle el evento de click con un boton propio  */}
             <Button variant='none' onClick={handleShow}>
                 Iniciar Sesion
             </Button>
@@ -48,7 +70,12 @@ const LoginModal = () => {
                 <Modal.Body className="pt-1">
 
                     <div className="form-text m-2">Puedes Iniciar sesion con Username o el Email</div>
-                    <form onSubmit={(e) => fetchLogin(e, userData, handleSubmit)}>
+                    <form noValidate onSubmit={(e) => {
+                        e.preventDefault()
+                        if (validate()) {
+                            fetchLogin(e, userData, handleSubmit)
+                        }
+                    }}>
 
                         <div className="row mb-4">
 
@@ -56,25 +83,34 @@ const LoginModal = () => {
                                 <div className="form-floating">
                                     <input type="text"
                                         placeholder="Username"
-                                        className="form-control text-primary "
+                                        className={`form-control text-primary ${(formValidation.username && formValidation.username !== 'valid') && 'is-invalid'}`}
+                                        name='username'
                                         id="FloatingUsername"
                                         value={userData.username}
+                                        minLength={4}
+                                        maxLength={32}
                                         onChange={(e) => handleChange(e, userData, setUserData)}
                                     />
                                     <label className="text-primary-emphasis" htmlFor="FloatingUsername">Username</label>
+                                    {(formValidation.username && formValidation.username !== 'valid') && <div className='invalid-feedback mx-2'>{formValidation.username}</div>}
                                 </div>
+
                             </div>
 
                             <div className="col">
                                 <div className=" form-floating ">
                                     <input type="email"
                                         placeholder="Email"
-                                        className="form-control "
+                                        className={`form-control ${(formValidation.email && formValidation.email !== 'valid') && 'is-invalid'}`}
                                         id="FloatingEmail" name="email"
                                         value={userData.email}
+                                        minLength={6}
+                                        maxLength={254}
                                         onChange={(e) => handleChange(e, userData, setUserData)}
                                     />
                                     <label htmlFor="FloatingEmail" className="text-secondary">Email </label>
+                                    {(formValidation.email && formValidation.email !== 'valid') && <div className='invalid-feedback mx-2'>{formValidation.email}</div>}
+
                                 </div>
                             </div>
 
@@ -84,14 +120,18 @@ const LoginModal = () => {
 
                             <input type="password"
                                 placeholder="Contraseña"
-                                className="form-control "
+                                className={`form-control  ${(formValidation.password && formValidation.password !== 'valid') && 'is-invalid'}`}
                                 id="password"
                                 name="password"
                                 value={userData.password}
+                                minLength={8}
+                                maxLength={128}
                                 onChange={(e) => handleChange(e, userData, setUserData)}
                                 required />
-                            <button type="submit" className="btn btn-outline-primary ">Iniciar Sesion</button>
 
+                            <button type="submit" className="btn btn-outline-primary rounded-end">Iniciar Sesion</button>
+
+                            {(formValidation.password && formValidation.password !== 'valid') && <div className='invalid-feedback mx-2'>{formValidation.password}</div>}
                         </div>
 
                         <div className="d-flex justify-content-center">
