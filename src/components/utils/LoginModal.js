@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { TokenContext } from "@/contexts/TokenContext";
 import { handleChange } from "@/utils/handleChange"
 import { fetchLogin } from "@/utils/api/fetchLogin";
 import { validateFieldText } from '@/utils/validateFieldText';
+import { useValidateFields } from '@/utils/hooks/useValidateFields';
 
 const LoginModal = () => {
     const [show, setShow] = useState(false);
@@ -14,11 +14,8 @@ const LoginModal = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    //  Codigo Usado dos veces, se puede refactorizar
-
-    //Contexto para cambiar el token
-    const { setDataToken } = useContext(TokenContext)
-    const router = useRouter()
+    //Contexto para cambiar el token e iniciar sesion
+    const { loginInit } = useContext(TokenContext)
 
     //Manejo del imput
     const [userData, setUserData] = useState({
@@ -26,35 +23,23 @@ const LoginModal = () => {
         email: '',
         password: ''
     })
-
-    const [formValidation, setFormValidation] = useState(false)
-
-    const validate = () => {
+    // Validacion requerida de los campos (exclusivo de este componente)
+    const validateLocal = () => {
         const validateErrors = {
-            username: validateFieldText(userData, 'username', 4, 32),
-            email: validateFieldText(userData, 'email', 6, 254, /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/),
+            username: (userData.email.length == 0 && userData.username.length != 0 || userData.username.length != 0 && userData.email.length != 0 || userData.username.length == 0 && userData.email.length == 0) ? validateFieldText(userData, 'username', 4, 32) : "valid",
+            email: (userData.username.length == 0 && userData.email.length != 0 || userData.username.length != 0 && userData.email.length != 0) ? validateFieldText(userData, 'email', 0, 254, /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/) : "valid",
             password: validateFieldText(userData, 'password', 8, 128)
         }
-
-        // Comprobamos si todas los valores del objeto son iguales
-        const invalidFields = Object.values(validateErrors).some(value => value !== 'valid')
-        //si todos los campos son correctos enviamos true para proseguir con el formulario
-        if (invalidFields) {
-            setFormValidation(validateErrors)
-            return (false)
-        } else {
-            setFormValidation(validateErrors)
-            return (true)
-        }
+        return validateErrors
     }
 
-    //Accion esperada de fetchLogin
-    const handleSubmit = (token) => {
-        //Guardamos el token en el contexto
-        setDataToken(token)
-        //Mandamos al inicion despues de logearnos
-        router.push('/')
+    // Hook de validacion de campos
+    const { validate, formValidation } = useValidateFields(validateLocal, () => fetchLogin(userData, (dataToken) => loginInit(dataToken)))
+
+    const handleSubmit = (e) => {
+        validate(e)
     }
+    
     return (
         <>
             {/* Boton a cambiar pasar solo la funcion al padre para que controle el evento de click con un boton propio  */}
@@ -70,12 +55,7 @@ const LoginModal = () => {
                 <Modal.Body className="pt-1">
 
                     <div className="form-text m-2">Puedes Iniciar sesion con Username o el Email</div>
-                    <form noValidate onSubmit={(e) => {
-                        e.preventDefault()
-                        if (validate()) {
-                            fetchLogin(e, userData, handleSubmit)
-                        }
-                    }}>
+                    <form noValidate onSubmit={handleSubmit}>
 
                         <div className="row mb-4">
 

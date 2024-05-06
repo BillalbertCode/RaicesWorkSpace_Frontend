@@ -13,6 +13,11 @@ export const TokenProvider = ({ children }) => {
         token: null
     })
 
+    const loginInit = (data) =>{
+        setDataToken(data)
+        router.push('/')
+    }
+
     // Datos que recibe al iniciar sesion 
     const loginStatus = dataToken.login
     const tokenId = dataToken.id;
@@ -32,7 +37,7 @@ export const TokenProvider = ({ children }) => {
     }, [loginStatus]);
 
     return (
-        <TokenContext.Provider value={{ token, tokenId, loginStatus, setDataToken, closedSession }}>
+        <TokenContext.Provider value={{ token, tokenId, loginStatus, loginInit, closedSession }}>
             {children}
         </TokenContext.Provider>
     )

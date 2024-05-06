@@ -4,12 +4,17 @@ import { fetchPostRegister } from "@/utils/api/fetchPostRegister";
 import { handleChange } from "@/utils/handleChange"
 import { verifyPassword } from "@/utils/verifyPassword";
 import { validateFieldText } from "@/utils/validateFieldText";
-
+import { requireAge } from "@/utils/requireAge";
+import { useValidateFields } from "@/utils/hooks/useValidateFields";
+import { useContext } from "react";
+import { TokenContext } from "@/contexts/TokenContext";
 /**
  * 
  * @param {function} set - para setear el estado del padre 
  */
 const RegisterForm = ({ set }) => {
+    const { loginInit } = useContext(TokenContext)
+
     //Manejo del input de los datos
     const [userData, setUserData] = useState({
         username: '',
@@ -20,60 +25,39 @@ const RegisterForm = ({ set }) => {
         birthDate: '',
         sex: ''
     })
-    const [formValidation, setFormValidation] = useState(false)
 
     // Este control solo habilita el boton de enviar al aceptar los terminos y condiciones
     const [acceptTerminos, setAcceptTerminos] = useState(false)
 
-    const validate = () => {
-        console.log(userData)
-
+    const validateLocal = () => {
         // Funcion de contraseña segura
         // devuelve, si es segura o no, y el mensaje de error
         const validPassword = verifyPassword(userData.password)
 
         // Funcion de Validacion de los campos
-
         const validateErrors = {
             username: validateFieldText(userData, 'username', 4, 32),
             password: validPassword.valid === false ? validPassword.message : 'valid',
             email: validateFieldText(userData, 'email', 6, 254, /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/),
             name: validateFieldText(userData, 'name', 1, 32),
             lastName: validateFieldText(userData, 'lastName', 1, 32),
-            birthDate: userData.birthDate ? 'valid' : 'Coloque su fecha de Nacimiento',
-            sex: userData.sex === '' ? 'Elija alguna Opcion' : 'valid'
+            // Validacion de la edad sea mayor a 12 años
+            birthDate: userData.birthDate ? requireAge(userData.birthDate, 12) : 'Coloque su fecha de Nacimiento',
+            sex: userData.sex.length != 0 ? 'valid' : 'Elija alguna Opcion'
         }
 
-        // Validacion de la edad sea mayor a 12 años
-        if (userData.birthDate) {
-            const today = new Date()
-            const birthDate = new Date(userData.birthDate)
-            let age = today.getFullYear() - birthDate.getFullYear()
-            let month = today.getMonth() - birthDate.getMonth()
-            if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            if (age < 12) {
-                validateErrors.birthDate = 'Debes ser mayor de 12 años'
-            } else {
-                validateErrors.birthDate = 'valid'
-            }
-        }
-
-        console.log(validPassword)
-
-        // Comprobamos si todas los valores del objeto son iguales
-        const invalidFields = Object.values(validateErrors).some(value => value !== 'valid')
-        
-        //si todos los campos son correctos enviamos las solicitud fetch
-        if (invalidFields) {
-            setFormValidation(validateErrors);
-            return false;
-        } else {
-            setFormValidation(validateErrors);
-            return true;
-        }
+        return validateErrors
     }
+    const actionUserRegister = (dataToken) => {
+        loginInit(dataToken)
+    }
+    // Hook de validacion de campos
+    const { validate, formValidation } = useValidateFields(validateLocal, () => fetchPostRegister(userData, actionUserRegister ))
+
+    const handleSubmit = (e) => {
+        validate(e)
+    }
+
     return (
 
         //Peticion de registro
@@ -85,13 +69,7 @@ const RegisterForm = ({ set }) => {
                     </div>
 
                     <div className="card-body">
-                        <form noValidate onSubmit={(e) => {
-                            e.preventDefault()
-                            if (validate()) {
-                                fetchPostRegister(e, userData, '/user/register', () => set(true))
-                            }
-                        }
-                        }>
+                        <form noValidate onSubmit={handleSubmit}>
                             {/* Campo Username */}
                             <div className="input-group mb-3">
                                 <label

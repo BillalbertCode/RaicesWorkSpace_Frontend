@@ -1,16 +1,14 @@
 // Formulario del Login que provee el token
 import { useContext, useState } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { TokenContext } from "@/contexts/TokenContext";
 import { handleChange } from "@/utils/handleChange"
 import { fetchLogin } from "@/utils/api/fetchLogin";
 import { validateFieldText } from "@/utils/validateFieldText";
-
+import { useValidateFields } from "@/utils/hooks/useValidateFields";
 const LoginForm = () => {
-    //Contexto para cambiar el token
-    const { setDataToken } = useContext(TokenContext)
-    const router = useRouter()
+    //Contexto para cambiar el token e iniciar sesion
+    const { loginInit } = useContext(TokenContext)
 
     //Manejo del imput
     const [userData, setUserData] = useState({
@@ -18,41 +16,23 @@ const LoginForm = () => {
         password: ''
     })
 
-    const [formValidation, setFormValidation] = useState(false)
-
-    const validate = () => {
+    // Validacion requerida de los campos (exclusivo de este componente)
+    const validateLocal = () => {
         const validateErrors = {
             email: validateFieldText(userData, 'email', 6, 254, /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/),
             password: validateFieldText(userData, 'password', 8, 128)
         }
-
-        // Comprobamos si todas los valores del objeto son iguales
-        const invalidFields = Object.values(validateErrors).some(value => value !== 'valid')
-        //si todos los campos son correctos enviamos true para proseguir con el formulario
-        if (invalidFields) {
-            setFormValidation(validateErrors)
-            return (false)
-        } else {
-            setFormValidation(validateErrors)
-            return (true)
-        }
+        return validateErrors
     }
+    // Hook de validacion de campos
+    const {validate, formValidation} = useValidateFields(validateLocal, () => fetchLogin(userData, (dataToken) => loginInit(dataToken)))
 
-    //Accion esperada de fetchLogin
-    const handleSubmit = (token) => {
-        //Guardamos el token en el contexto
-        setDataToken(token)
-        //Mandamos al inicion despues de logearnos
-        router.push('/')
+    const handleSubmit = (e) => {
+        validate(e)
     }
 
     return (
-        <form noValidate onSubmit={(e) => {
-            e.preventDefault()
-            if (validate()) {
-                fetchLogin(e, userData, handleSubmit)
-            }
-        }}>
+        <form noValidate onSubmit={handleSubmit}>
 
             <div className="input-group input-group-sm mb-2">
                 <label htmlFor="emailgrop" className="input-group-text bg-primary-subtle">Email </label>

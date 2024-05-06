@@ -9,7 +9,7 @@
  * @returns
  */
 export const validateFieldText = (data, fieldName, minLength, maxLength, regex) => {
-
+    console.log("Render")
     const value = data[fieldName]
 
     // validacion segun los caracteres

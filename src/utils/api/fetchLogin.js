@@ -2,12 +2,10 @@
 // Recibe un objeto con los datos del formularo como dataSend
 // action es la accion que va a realizar pasale una funcion
 /**
- * @param {object} e - event object
  * @param {object} dataSend - datos a enviar 
  * @param {function} action - Solo esta accion espera los datos del token para setearlo
  */
-export const fetchLogin = async (e, dataSend, action) => {
-    e.preventDefault()
+export const fetchLogin = async (dataSend, action) => {
     try {
         const response = await fetch('http://localhost:5000/user/login', {
             method: 'POST',
@@ -16,17 +14,16 @@ export const fetchLogin = async (e, dataSend, action) => {
             },
             body: JSON.stringify(dataSend)
         })
-
-        if (!response.ok) {
-            throw new Error('Ocurrio un error al registrarse')
-        }
-
         const data = await response.json()
 
-        console.log('Inicio de secion exitoso')
-        //pasarle el token a la accion
+        if (!response.ok) {
+            return(data.error)
+        }
+
+        //pasarle el token e iniciar sesion
         action(data)
     } catch (error) {
         console.error(error)
+        return error
     }
 }

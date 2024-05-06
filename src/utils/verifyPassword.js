@@ -12,16 +12,16 @@ export const verifyPassword = (password) => {
     if (!passwordRegex.test(password)) {
         let errorMessage = 'La contraseña debe contener al menos: ';
         if (password.length < 8) {
-            errorMessage += '8 caracteres. ';
+            errorMessage += '8 caracteres, ';
         }
         if (!/[a-z]/.test(password)) {
-            errorMessage += 'una letra minúscula. ';
+            errorMessage += 'una letra minúscula, ';
         }
         if (!/[A-Z]/.test(password)) {
-            errorMessage += 'una letra mayúscula. ';
+            errorMessage += 'una letra mayúscula, ';
         }
         if (!/[0-9]/.test(password)) {
-            errorMessage += 'un número. ';
+            errorMessage += 'un número, ';
         }
         if (!/[!@#$%^&*]/.test(password)) {
             errorMessage += 'uno de estos caracteres !@#$%^&*. ';

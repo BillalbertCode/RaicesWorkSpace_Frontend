@@ -3,15 +3,12 @@
 // Recibe un objeto con los datos del formularo como dataSend
 // action es la accion que va a realizar pasale una funcion
 /**
- * @param {object} e - event object 
  * @param {object} dataSend - datos a enviar 
- * @param {string} endpoint - endpoint del objeto a enviar 
- * @param {function} action - Accion luego de enviar la informacion (opcional) 
+ * @param {function} action - Accion luego de enviar la informacion en este caso devuelve tokne 
  */
-export const fetchPostRegister = async (e, dataSend, endpoint, action) => {
-    e.preventDefault()
+export const fetchPostRegister = async (dataSend, action) => {
     try {
-        const response = await fetch(`http://localhost:5000${endpoint}`, {
+        const response = await fetch(`http://localhost:5000/user/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,13 +17,12 @@ export const fetchPostRegister = async (e, dataSend, endpoint, action) => {
         })
         const data = await response.json()
         if (!response.ok) {
-            throw new Error( data.error )
+            return (data.error)
         }
 
         console.log('registro exitoso')
-        if(action){
-            action()
-        }
+        //pasarle el token e iniciar sesion
+        action(data)
         console.log('datos enviados', dataSend)
     } catch (error) {
         console.error(error)
