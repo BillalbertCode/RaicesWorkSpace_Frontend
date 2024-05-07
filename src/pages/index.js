@@ -8,7 +8,10 @@ const HomePage = () => {
     return (
         <>
             {loginStatus
-                ? <ArticleForm></ArticleForm>
+                ? <div >
+                    <h1 className="display-4">Raices</h1>
+                    <ArticleForm></ArticleForm>
+                </div>
                 : <Layout></Layout>}
             <ArticlesAll endpoint='/article/all' ></ArticlesAll>
 

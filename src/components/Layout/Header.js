@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <Link href="/" className="navbar-brand" >Navbar</Link>
+        <Link href="/" className="navbar-brand" >Raices</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -18,7 +18,7 @@ const Header = () => {
             <Link href="/" className="nav-link ">Home</Link>
 
             {/* Accion segun el estatus de inicio de sesion */}
-            <Link href="#" className="nav-link disabled" aria-disabled="true">Disabled</Link>
+            
             {loginStatus
               ? (<>
                 <Link href="/profile" className="nav-link"> Profile</Link>
@@ -28,10 +28,10 @@ const Header = () => {
           </div>
 
           {/* Proximo */}
-          <form className="d-flex" role="search">
+          {/* <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             <button className="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>

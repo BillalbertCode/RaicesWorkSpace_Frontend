@@ -12,7 +12,7 @@ const ArticleCard = ({ article }) => {
         <div className="card mb-3" style={{ maxWidth: "540px" }}>
             <div className="row g-0">
                 <div className="col-md-4">
-                    <img src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" className="img-fluid rounded-start" alt={article.title || article.content} />
+                    <img src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain" className="img-fluid rounded-start" alt={article.title || article.content} />
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">
