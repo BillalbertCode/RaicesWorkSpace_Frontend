@@ -1,5 +1,5 @@
 // Creacion de Article
-import { useContext, useState, useEffect, useRef } from "react"
+import { useContext, useState, useEffect } from "react"
 import { TokenContext } from "@/contexts/TokenContext"
 import { ArticleContext } from "@/contexts/ArticleContext"
 //Controladores del formulario
@@ -9,7 +9,7 @@ import { fetchPostArticle } from "@/utils/api/fetchPostArticle"
 import { useValidateFields } from "@/utils/hooks/useValidateFields"
 import { validateFieldText } from "@/utils/validateFieldText"
 import Link from "next/link"
-const ArticleForm = ({data}) => {
+const ArticleForm = () => {
     const { token } = useContext(TokenContext)
     const { toogleRender } = useContext(ArticleContext)
     // Estados del article
@@ -18,13 +18,11 @@ const ArticleForm = ({data}) => {
         content: ''
     })
     const [dataUser, setDataUser] = useState(localStorage.getItem('dataProfile') || { name: 'Loading...', username: 'Loading...' })
-    const preventDataUser = useRef(localStorage.getItem('dataProfile') !== null)
   
+    // Renderizacion de la data 
     useEffect(() => {
-
       if (localStorage.getItem('dataProfile') && localStorage.getItem('dataProfile') !== 'undefined') {
         setDataUser(JSON.parse(localStorage.getItem('dataProfile')))
-        console.log("hecho")
       }
     }, [localStorage.getItem('dataProfile')])
 

@@ -43,7 +43,7 @@ const HomePage = () => {
         <main className="d-flex flex-column align-items-center">
 
             {loginStatus
-                ? <ArticleForm data={userData}></ArticleForm>
+                ? <ArticleForm ></ArticleForm>
                 : <Layout></Layout>}
             <ArticlesAll endpoint='/article/all' ></ArticlesAll>
 
