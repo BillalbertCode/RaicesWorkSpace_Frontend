@@ -13,8 +13,22 @@ export const TokenProvider = ({ children }) => {
         token: null
     })
 
-    const loginInit = (data) =>{
+    useEffect(() => {
+        // Guardamos la sesion en el storage del usuario en el cache
+        const storageSession = JSON.parse(localStorage.getItem('token'))
+
+        if (storageSession) {
+            setDataToken(storageSession)
+        }
+    }, []);
+
+
+    const loginInit = (data) => {
         setDataToken(data)
+        // Almacenamos los datos en la cache
+        const jsonString = JSON.stringify(data)
+        localStorage.setItem('token', jsonString)
+
         router.push('/')
     }
 
@@ -24,17 +38,20 @@ export const TokenProvider = ({ children }) => {
     const token = dataToken.token;
 
     // Cierra la sesion del usuario eliminando todo rastro de la sesion
-    const closedSession = () =>{
-            setDataToken({
-                login: false,
-                id: null,
-                token: null
-            })
-            router.push('/')
+    const closedSession = () => {
+        setDataToken({
+            login: false,
+            id: null,
+            token: null
+        })
+        router.push('/')
+
+        localStorage.removeItem('token')
+        localStorage.removeItem('dataProfile')
     }
-    useEffect(() => {
-        
-    }, [loginStatus]);
+
+    // Si existe un token en el localstorage lo cargamos
+
 
     return (
         <TokenContext.Provider value={{ token, tokenId, loginStatus, loginInit, closedSession }}>

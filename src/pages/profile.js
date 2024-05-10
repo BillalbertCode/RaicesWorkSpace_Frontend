@@ -26,15 +26,22 @@ const Profile = () => {
                         Authorization: `${token}`
                     },
                 })
+
                 if (!response.ok) {
                     if (response.status === 401) {
-                        const error = new Error ('Aun no has iniciado sesion')
+                        const error = new Error('Aun no has iniciado sesion')
                         error.status = response.status
                         throw error
                     }
                 }
+                console.log(token)
                 const profileData = await response.json();
                 setUserProfile(profileData)
+                setErrorController({
+                    controll: false,
+                    message: '',
+                    status: ''
+                })
             } catch (error) {
                 setErrorController({
                     controll: true,
@@ -44,11 +51,13 @@ const Profile = () => {
                 console.error(error)
             }
         })();
-    }, [userProfile]);
+
+    }, [token]);
 
     if (errorController.controll) {
         return (<ConexionError statusError={errorController.status} message={errorController.message} ></ConexionError>)
     }
+
     if (userProfile === null) {
         return <div>Loading...</div>;
     }

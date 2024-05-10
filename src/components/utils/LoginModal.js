@@ -25,6 +25,7 @@ const LoginModal = () => {
     })
     // Validacion requerida de los campos (exclusivo de este componente)
     const validateLocal = () => {
+        // perdi la cordura help
         const validateErrors = {
             username: (userData.email.length == 0 && userData.username.length != 0 || userData.username.length != 0 && userData.email.length != 0 || userData.username.length == 0 && userData.email.length == 0) ? validateFieldText(userData, 'username', 4, 32) : "valid",
             email: (userData.username.length == 0 && userData.email.length != 0 || userData.username.length != 0 && userData.email.length != 0) ? validateFieldText(userData, 'email', 0, 254, /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/) : "valid",

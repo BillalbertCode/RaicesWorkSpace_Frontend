@@ -25,53 +25,60 @@ const LoginForm = () => {
         return validateErrors
     }
     // Hook de validacion de campos
-    const {validate, formValidation} = useValidateFields(validateLocal, () => fetchLogin(userData, (dataToken) => loginInit(dataToken)))
+    const { validate, formValidation } = useValidateFields(validateLocal, () => fetchLogin(userData, (dataToken) => loginInit(dataToken)))
 
     const handleSubmit = (e) => {
         validate(e)
     }
 
     return (
-        <form noValidate onSubmit={handleSubmit}>
-
-            <div className="input-group input-group-sm mb-2">
-                <label htmlFor="emailgrop" className="input-group-text bg-primary-subtle">Email </label>
-                <input type="email"
-                    placeholder="email@example.com"
-                    className={`form-control ${(formValidation.email && formValidation.email !== 'valid') && 'is-invalid'}`}
-                    id="emailgrop" name="email"
-                    value={userData.email}
-                    minLength={6}
-                    maxLength={254}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
-                {(formValidation.email && formValidation.email !== 'valid') && <div className="invalid-feedback"> {formValidation.email} </div>}
+        <div className="card text-bg-light border border-primary  bg-body " style={{ width: "70%", margin: "auto" }} >
+            <div className="card-header d-flex justify-content-between align-items-center bg-metallic-animation text-light">
+                <h5 >Iniciar Sesion</h5>
             </div>
-            <div className="input-group input-group-sm mb-3">
-                <label htmlFor="password" className="input-group-text bg-primary-subtle">Password</label>
-                <input type="password"
-                    placeholder="contraseña1234"
-                    className={`form-control ${(formValidation.password && formValidation.password !== 'valid') && 'is-invalid'}`}
-                    id="password"
-                    name="password"
-                    minLength={8}
-                    maxLength={128}
-                    value={userData.password}
-                    onChange={(e) => handleChange(e, userData, setUserData)}
-                    required />
-                {(formValidation.password && formValidation.password !== 'valid') && <div className="invalid-feedback"> {formValidation.password} </div>}
+            <div className="card-body  px-4">
+                <form noValidate onSubmit={handleSubmit}>
 
-            </div>
-            <div className="d-flex justify-content-between">
-                <button type="submit" className="btn btn-outline-primary btn-sm mb-2">Iniciar Sesion</button>
+                    <div className="input-group input-group-sm mb-2">
+                        <label htmlFor="emailgrop" className="input-group-text bg-metallic text-light">Email </label>
+                        <input type="email"
+                            placeholder="email@example.com"
+                            className={`form-control ${(formValidation.email && formValidation.email !== 'valid') && 'is-invalid'}`}
+                            id="emailgrop" name="email"
+                            value={userData.email}
+                            minLength={6}
+                            maxLength={254}
+                            onChange={(e) => handleChange(e, userData, setUserData)}
+                            required />
+                        {(formValidation.email && formValidation.email !== 'valid') && <div className="invalid-feedback"> {formValidation.email} </div>}
+                    </div>
+                    <div className="input-group input-group-sm mb-3">
+                        <label htmlFor="password" className="input-group-text bg-metallic text-light bg-primary-subtle">Password</label>
+                        <input type="password"
+                            placeholder="contraseña1234"
+                            className={`form-control ${(formValidation.password && formValidation.password !== 'valid') && 'is-invalid'}`}
+                            id="password"
+                            name="password"
+                            minLength={8}
+                            maxLength={128}
+                            value={userData.password}
+                            onChange={(e) => handleChange(e, userData, setUserData)}
+                            required />
+                        {(formValidation.password && formValidation.password !== 'valid') && <div className="invalid-feedback"> {formValidation.password} </div>}
 
-                <Link href="/register" className="icon-link icon-link-hover link-body-emphasis link-underline-opacity-0 mb-2">Registrarse
-                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                    </svg>
-                </Link>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                        <button type="submit" className="btn btn-outline-primary btn-sm mb-2">Iniciar Sesion</button>
+
+                        <Link href="/register" className="icon-link icon-link-hover link-body-emphasis link-underline-opacity-0 mb-2">Registrarse
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg>
+                        </Link>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div >
     )
 }
 

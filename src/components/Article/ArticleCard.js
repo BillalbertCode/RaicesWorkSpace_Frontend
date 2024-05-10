@@ -15,19 +15,19 @@ const ArticleCard = ({ article }) => {
                     <img src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain" className="img-fluid rounded-start" alt={article.title || article.content} />
                 </div>
                 <div className="col-md-8">
-                    <div className="card-body">
+                    <div className="card-body ">
                         <h5 className="card-title">{article.title}</h5>
                         <p className="card-text">{article.content}</p>
                         <Link href={`/profile/${article.author._id}`}>
                             <p className="card-text">
                                 <small className="text-body-secondary">
-                                    {`By: ${article.author.name} ${article.author.lastName}`}
+                                    {` ${article.author.name} ${article.author.lastName}`}
                                 </small>
                             </p>
                         </Link>
                         <p className="card-text">
                             <small className="text-body-secondary">
-                                Publicacion Date: {formateDate(article.createAt)}
+                                Fecha de publicacion: {formateDate(article.createAt)}
                             </small>
                         </p>
                         {/* Botones de configuracion del article usuario con privilegios sobre el articulo */}

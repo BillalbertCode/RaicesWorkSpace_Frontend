@@ -11,9 +11,11 @@ const ProfileComponente = ({profileData}) => {
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">Nombre: {profileData.name}</li>
                     <li className="list-group-item">Apellido: {profileData.lastName}</li>
+                    <li className="list-group-item">Username: @{profileData.username}</li>
                     <li className="list-group-item">Email: {profileData.email}</li>
                     <li className="list-group-item">Genero: {profileData.sex}</li>
-                    <li className="list-group-item">Edad: {profileData.birthDate}</li>
+                    <li className="list-group-item">BirthDate: {profileData.birthDate}</li>
+
                 </ul>
             </div>
         </div>
