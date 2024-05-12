@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ArticlesAll from "@/components/Article/ArticlesAll";
-import ProfileComponente from "@/components/User/ProfileComponente";
 import ConexionError from "@/components/Layout/ConexionError";
+import ProfileVisitComponent from "@/components/User/ProfileVisitComponent";
 
 const Profile = () => {
     const router = useRouter()
@@ -22,7 +22,7 @@ const Profile = () => {
                 const response = await fetch(`http://localhost:5000/user/profile/${id}`)
                 if (!response.ok) {
                     if (response.status === 404) {
-                        const error = new Error ('Usuario no encontrado')
+                        const error = new Error('Usuario no encontrado')
                         error.status = response.status
                         throw error
                     }
@@ -40,7 +40,7 @@ const Profile = () => {
         })();
     }, [id]);
 
-    if (errorController.controll){
+    if (errorController.controll) {
         return (<ConexionError statusError={errorController.status} message={errorController.message} ></ConexionError>)
     }
     if (userProfile === null) {
@@ -48,7 +48,7 @@ const Profile = () => {
     }
     return (
         <div>
-            <ProfileComponente profileData= {userProfile}></ProfileComponente>
+            <ProfileVisitComponent profileData={userProfile}></ProfileVisitComponent>
             <ArticlesAll endpoint={`/article/user/${id}`} ></ArticlesAll>
         </div>
     )

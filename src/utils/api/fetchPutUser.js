@@ -3,16 +3,13 @@
 // action es la accion que va a realizar pasale una funcion
 /**
  * 
- * @param {object} e - event object 
  * @param {object} dataSend - objeto con los datos a modificar 
- * @param {string} endpoint - endpoint necesario para la modificacion 
  * @param {string} token - token de validacion de usuario 
  * @param {function} action - funciones adicionales que hacer si el put se manda correctamente 
  */
-export const fetchPut = async (e, dataSend, endpoint, token, action) => {
-    e.preventDefault()
+export const fetchPut = async (dataSend, token, action) => {
     try {
-        const response = await fetch(`http://localhost:5000${endpoint}`, {
+        const response = await fetch('http://localhost:5000/user/profile', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,8 +17,9 @@ export const fetchPut = async (e, dataSend, endpoint, token, action) => {
             },
             body: JSON.stringify(dataSend)
         })
+        const data = await response.json()
         if (!response.ok) {
-            throw new Error('Error en la modificacion')
+            return (data.error)
         }
 
         if (action) {
