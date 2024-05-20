@@ -1,9 +1,13 @@
 import { useState, useEffect, useContext } from "react";
+// Contextos
 import { TokenContext } from "@/contexts/TokenContext";
+// Componentes
 import ProfileComponente from "@/components/User/ProfileComponente";
 import ArticlesAll from "@/components/Article/ArticlesAll";
 import ConexionError from "@/components/Layout/ConexionError";
+// Funciones Utiles
 import { fetchDeleteUser } from "@/utils/api/fetchDeleteUser";
+import UserDeleteModal from "@/components/utils/UserDeleteModal";
 
 const Profile = () => {
     const { token, closedSession } = useContext(TokenContext)
@@ -65,9 +69,7 @@ const Profile = () => {
 
         <div className="container">
             <ProfileComponente token={token} profileData={userProfile}></ProfileComponente>
-            <button className="btn bg-metallic text-white mt-2" onClick={() => {
-                fetchDeleteUser('/user/profile/', token, closedSession)
-            }}>Eliminar Usuario</button>
+            <UserDeleteModal token={token} action={() => closedSession()}></UserDeleteModal>
             <ArticlesAll endpoint={`/article/user/${userProfile._id}`} ></ArticlesAll>
         </div >
     )
