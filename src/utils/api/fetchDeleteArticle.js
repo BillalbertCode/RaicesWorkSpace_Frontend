@@ -27,5 +27,6 @@ export const fetchDeleteArticle = async (articleId, token, action) => {
         
     } catch (error) {
         console.error(error)
+        throw error
     }
 }

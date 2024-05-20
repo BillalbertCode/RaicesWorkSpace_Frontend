@@ -27,5 +27,6 @@ export const fetchPut = async (dataSend, token, action) => {
         }
     } catch (error) {
         console.error(error)
+        throw error
     }
 }

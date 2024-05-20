@@ -8,22 +8,29 @@ import { fetchPostArticle } from "@/utils/api/fetchPostArticle"
 // Utilidades para la validacion del formulario
 import { useValidateFields } from "@/utils/hooks/useValidateFields"
 import { validateFieldText } from "@/utils/validateFieldText"
+
+// Libreria de Notificaciones/Toast
+import toast from "react-hot-toast"
 import Link from "next/link"
 const ArticleForm = () => {
+
+
     const { token } = useContext(TokenContext)
     const { toogleRender } = useContext(ArticleContext)
+
     // Estados del article
     const [articleData, setArticleData] = useState({
         title: '',
         content: ''
     })
+
+    // Renderizacion de la data del usuario
     const [dataUser, setDataUser] = useState(localStorage.getItem('dataProfile') || { name: 'Loading...', username: 'Loading...' })
-  
-    // Renderizacion de la data 
+
     useEffect(() => {
-      if (localStorage.getItem('dataProfile') && localStorage.getItem('dataProfile') !== 'undefined') {
-        setDataUser(JSON.parse(localStorage.getItem('dataProfile')))
-      }
+        if (localStorage.getItem('dataProfile') && localStorage.getItem('dataProfile') !== 'undefined') {
+            setDataUser(JSON.parse(localStorage.getItem('dataProfile')))
+        }
     }, [localStorage.getItem('dataProfile')])
 
     // Validacion requerida de los campos (exclusivo de este componente)
@@ -39,7 +46,8 @@ const ArticleForm = () => {
         }
         return validateErrors
     }
-    // Funcion para vaciar el input y renderizar
+
+    // Funcion para vaciar el input y renderizar cuando se halla mandado exitosamente el post
     const action = () => {
         toogleRender()
         setArticleData({
@@ -48,8 +56,19 @@ const ArticleForm = () => {
         })
     }
 
+    // Promesa con la Notificacion del formulario + solicitud fetch
+    const toastFetch = () => {
+        toast.promise(fetchPostArticle(articleData, token, action),
+            {
+                loading: 'Creando Articulo.. ',
+                success:'Articulo Creado',
+                error: 'Problema al crear el articulo',
+            }).catch(error => {
+                console.error(error)
+            })
+    }
     // Hook de validacion de campos
-    const { validate, formValidation } = useValidateFields(validateLocal, () => fetchPostArticle(articleData, token, action))
+    const { validate, formValidation } = useValidateFields(validateLocal, toastFetch)
 
     const handleSubmit = (e) => {
         validate(e)
@@ -97,6 +116,7 @@ const ArticleForm = () => {
                 </div>
                 <button type="submit" className="btn btn-outline-secondary">Publicar</button>
             </form>
+            
         </div >
     )
 }

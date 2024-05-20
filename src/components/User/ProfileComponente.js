@@ -1,11 +1,14 @@
 //Componente que muestra los datos del usuario
 import Link from "next/link";
 import { useState } from "react";
+// Funciones
 import { handleChange } from "@/utils/handleChange";
 import { useValidateFields } from "@/utils/hooks/useValidateFields";
-import styles from '@/styles/inputs.module.css'
-import { fetchPut } from "@/utils/api/fetchPutUser";
 import { validateFieldText } from "@/utils/validateFieldText";
+// Solicitud Fetch
+import { fetchPut } from "@/utils/api/fetchPutUser";
+import styles from '@/styles/inputs.module.css'
+import toast from "react-hot-toast";
 /**
  * @param {object} profileData - objeto con los datos del usuario 
  */
@@ -49,11 +52,22 @@ const ProfileComponente = ({ token, profileData }) => {
         return validateErrors
     }
 
+    // Notificacion de modificacion del Usuario
+    const toastFetch = (field) => {
+        toast.promise(fetchPut({[field]: inputData[field]}, token, () => handleEdit(field) ),
+            {
+                loading: 'Modificando Usuario...',
+                success: <p>Modificacion Exitosa<br/> Reniciar para ver los cambios</p>, 
+                error: 'Error al tratar de Modificar el usuario',
+            }).catch(error => {
+                console.log(error)
+            })
+    }
 
     //  vailidacion de errores con hook
-    const validacionName = useValidateFields(() => validateField('name'), () => fetchPut({ name: inputData.name }, token, () => setEdit({ ...edit, name: !edit.name })))
-    const validacionLastName = useValidateFields(() => validateField('lastName'), () => fetchPut({ lastName: inputData.lastName }, token, () => setEdit({ ...edit, lastName: !edit.lastName })))
-    const validacionEmail = useValidateFields(() => validateField('email'), () => fetchPut({ email: inputData.email }, token, () => setEdit({ ...edit, email: !edit.email })))
+    const validacionName = useValidateFields(() => validateField('name'), () => toastFetch('name') )
+    const validacionLastName = useValidateFields(() => validateField('lastName'), () => toastFetch('lastName') )
+    const validacionEmail = useValidateFields(() => validateField('email'), () => toastFetch('email'))
 
 
     const handleSubmit = (e, field) => {
@@ -204,7 +218,7 @@ const EditField = ({
                         <path fillRule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                     </svg>
                 </button>
-                <div className="text-warning">{error}</div>
+                <div className="text-warning">{error !== 'valid' && error}</div>
             </div>
         </li>
     )

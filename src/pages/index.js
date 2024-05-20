@@ -3,11 +3,12 @@ import { TokenContext } from "@/contexts/TokenContext";
 import Layout from "@/components/Layout/Layout";
 import ArticlesAll from "@/components/Article/ArticlesAll";
 import ArticleForm from "@/components/Article/ArticleForm";
+
 const HomePage = () => {
     const { loginStatus, token, closedSession } = useContext(TokenContext)
     const [userData, setUserData] = useState(null)
-        useEffect(() => {
-            if (loginStatus) {
+    useEffect(() => {
+        if (loginStatus) {
             (async () => {
                 try {
                     const response = await fetch(`http://localhost:5000/user/profile/`, {
@@ -36,8 +37,8 @@ const HomePage = () => {
                 }
             })();
         }
-        }, [token]);
-   
+    }, [token]);
+
     return (
 
         <main className="d-flex flex-column align-items-center">
@@ -46,7 +47,7 @@ const HomePage = () => {
                 ? <ArticleForm ></ArticleForm>
                 : <Layout></Layout>}
             <ArticlesAll endpoint='/article/all' ></ArticlesAll>
-
+           
         </main>
     )
 }

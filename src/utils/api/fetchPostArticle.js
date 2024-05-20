@@ -18,7 +18,7 @@ export const fetchPostArticle = async (dataSend, token, action) => {
         })
         const data = await response.json()
         if (!response.ok) {
-            return (data,error)
+            return (data.error)
         }
         //Alguna accion adicional que quieras hacer con el componente
         if(action){
@@ -26,5 +26,7 @@ export const fetchPostArticle = async (dataSend, token, action) => {
         }
     } catch (error) {
         console.error(error)
+        throw error
     }
+
 }
