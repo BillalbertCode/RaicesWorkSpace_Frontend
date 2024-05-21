@@ -19,7 +19,10 @@ export const fetchPut = async (dataSend, token, action) => {
         })
         const data = await response.json()
         if (!response.ok) {
-            return (data.error)
+            const error = new Error
+            error.message = data.error
+
+            throw error.message
         }
 
         if (action) {

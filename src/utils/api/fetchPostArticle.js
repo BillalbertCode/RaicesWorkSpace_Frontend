@@ -18,10 +18,13 @@ export const fetchPostArticle = async (dataSend, token, action) => {
         })
         const data = await response.json()
         if (!response.ok) {
-            return (data.error)
+            const error = new Error
+            error.message = data.error
+
+            throw error.message
         }
         //Alguna accion adicional que quieras hacer con el componente
-        if(action){
+        if (action) {
             action()
         }
     } catch (error) {

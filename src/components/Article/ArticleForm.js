@@ -58,14 +58,16 @@ const ArticleForm = () => {
 
     // Promesa con la Notificacion del formulario + solicitud fetch
     const toastFetch = () => {
-        toast.promise(fetchPostArticle(articleData, token, action),
+        const info = toast.promise(fetchPostArticle(articleData, token, action),
             {
                 loading: 'Creando Articulo.. ',
                 success:'Articulo Creado',
                 error: 'Problema al crear el articulo',
             }).catch(error => {
                 console.error(error)
+                return error
             })
+            return info
     }
     // Hook de validacion de campos
     const { validate, formValidation } = useValidateFields(validateLocal, toastFetch)

@@ -18,14 +18,16 @@ const ArticleConfig = ({ article }) => {
 
     // Notificacion status + solicitud delete
     const toastFetch = () => {
-        toast.promise(fetchDeleteArticle(article._id, token, toogleRender),
+        const info = toast.promise(fetchDeleteArticle(article._id, token, toogleRender),
             {
                 loading: 'Eliminando articulo...',
                 success: 'Articulo eliminado con exito',
                 error: 'Error al tratar de eliminar el articulo',
             }).catch(error => {
                 console.log(error)
+                return error
             })
+            return info
     }
 
     return (

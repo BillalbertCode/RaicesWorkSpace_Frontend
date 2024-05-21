@@ -9,10 +9,13 @@ import { validateFieldText } from "@/utils/validateFieldText";
 import { fetchPut } from "@/utils/api/fetchPutUser";
 import styles from '@/styles/inputs.module.css'
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 /**
  * @param {object} profileData - objeto con los datos del usuario 
  */
 const ProfileComponente = ({ token, profileData }) => {
+
+    const router = useRouter()
     // Boton de detalles
     const [details, setDetails] = useState(false)
     // Boton de edicion de campos
@@ -54,19 +57,28 @@ const ProfileComponente = ({ token, profileData }) => {
 
     // Notificacion de modificacion del Usuario
     const toastFetch = (field) => {
-        toast.promise(fetchPut({[field]: inputData[field]}, token, () => handleEdit(field) ),
+        const info = toast.promise(fetchPut({ [field]: inputData[field] }, token, () => handleEdit(field)),
             {
                 loading: 'Modificando Usuario...',
-                success: <p>Modificacion Exitosa<br/> Reniciar para ver los cambios</p>, 
+                success: <div>Modificacion Exitosa<br /> <div><small>Reniciar para ver los cambios</small> <button className="btn btn-sm btn-secondary" onClick={() => router.push('../')}> Reset <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                </svg></button></div></div>,
                 error: 'Error al tratar de Modificar el usuario',
-            }).catch(error => {
-                console.log(error)
-            })
+            }, {
+            success: {
+                duration: 15000
+            }
+        }).catch(error => {
+            console.log(error)
+            return error
+        })
+        return info
     }
 
     //  vailidacion de errores con hook
-    const validacionName = useValidateFields(() => validateField('name'), () => toastFetch('name') )
-    const validacionLastName = useValidateFields(() => validateField('lastName'), () => toastFetch('lastName') )
+    const validacionName = useValidateFields(() => validateField('name'), () => toastFetch('name'))
+    const validacionLastName = useValidateFields(() => validateField('lastName'), () => toastFetch('lastName'))
     const validacionEmail = useValidateFields(() => validateField('email'), () => toastFetch('email'))
 
 

@@ -16,8 +16,12 @@ export const fetchDeleteArticle = async (articleId, token, action) => {
                 Authorization: `${token}`
             },
         })
+        const data = await response.json()
         if (!response.ok) {
-            throw new Error('Eliminacion del articulo fallida')
+            const error = new Error
+            error.message = data.error
+
+            throw error.message
         }
         console.log('Eliminacion del Articulo exitosa')
         // Accion esperada del articulo

@@ -14,6 +14,13 @@ function MyApp({ Component, pageProps }) {
         <Toaster
           position="top-right"
           reverseOrder={true}
+          toastOptions={{
+            duration: 5000,
+            style:{
+              border: '2px solid #4ca1da'
+            },
+            
+          }}
         />
       </ArticleProvider>
     </TokenProvider>
