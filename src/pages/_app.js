@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     <TokenProvider>
       <ArticleProvider>
         <Header></Header>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
         <Toaster
           position="top-right"
           reverseOrder={true}

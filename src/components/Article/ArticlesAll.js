@@ -57,8 +57,8 @@ const ArticlesAll = ({ endpoint }) => {
     }
 
     return (
-        <div className="container-fluid text-center">
-            <h3>All Articles</h3>
+        <div className="container-fluid text-center d-flex flex-column align-items-center mt-5">
+           
             {loading
                 ? (<div> <p>loading</p> </div>)
                 // Mapeo de los articulos

@@ -16,6 +16,12 @@
     animation: reflex 30s linear infinite;
 
 }
+.bg-metallic-animation2 {
+    background: linear-gradient(145deg, rgba(255,255,255,1) 21%, rgba(211,221,239,1) 37%, rgba(141,166,214,1) 56%, rgba(21,72,170,1) 78%, rgba(3,0,54,1) 100%);
+    /* background-size: 600% 600%; */
+
+    /* animation: reflex 0.2s linear infinite; */
+}
 
 /* iconos medianos con animacion hover de reflexion*/
 .iconLink {
@@ -118,8 +124,9 @@
     border:solid #000 2px ;
     border-radius: 50%;
     width: 60px;
-    height:60px;
+    height:auto;
 }
+
 /* Input textarea */
 .textareaArticle{
     border:  2px #00000000 solid !important;

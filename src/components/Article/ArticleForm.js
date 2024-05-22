@@ -41,7 +41,7 @@ const ArticleForm = () => {
             validateErrors.content = 'No puedes dejar ambos campos vacios'
 
         } else {
-            validateErrors.title = articleData.title.length !== 0 ? validateFieldText(articleData, 'title', 0, 60) : "valid"
+            validateErrors.title = articleData.title.length !== 0 ? validateFieldText(articleData, 'title', 0, 20) : "valid"
             validateErrors.content = articleData.content.length !== 0 ? validateFieldText(articleData, 'content', 0, 260) : "valid"
         }
         return validateErrors
@@ -94,6 +94,7 @@ const ArticleForm = () => {
                         id="title"
                         name="title"
                         placeholder="Título del articulo"
+                        maxLength={20}
                         value={articleData.title}
                         onChange={
                             (e) => handleChange(e, articleData, setArticleData)
@@ -106,6 +107,7 @@ const ArticleForm = () => {
                         id="content"
                         name="content"
                         placeholder="Tu descripcion"
+                        maxLength={260}
                         value={articleData.content}
                         onChange={
                             (e) => handleChange(e, articleData, setArticleData)
