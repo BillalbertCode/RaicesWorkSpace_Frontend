@@ -8,6 +8,8 @@ import { fetchPostArticle } from "@/utils/api/fetchPostArticle"
 // Utilidades para la validacion del formulario
 import { useValidateFields } from "@/utils/hooks/useValidateFields"
 import { validateFieldText } from "@/utils/validateFieldText"
+// Estilos
+import inputStyle from "@/styles/inputs.module.css"
 
 // Libreria de Notificaciones/Toast
 import toast from "react-hot-toast"
@@ -80,7 +82,7 @@ const ArticleForm = () => {
         <div style={{ width: "60%" }} className="container-sm m-4">
             <div className=" d-flex " >
                 <Link href="/profile">
-                    <img className="iconLink profile" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
+                    <img className="iconLink profileIcon" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
                 </Link>
                 <Link className=" mx-3 link-dark link-offset-2 link-underline link-underline-opacity-0" href="/profile">
                     <p className="h6 pt-2">{dataUser.name}</p>
@@ -103,7 +105,7 @@ const ArticleForm = () => {
                     {(formValidation.title && formValidation.title !== 'valid') && <div className="invalid-feedback"> {formValidation.title} </div>}
                 </div>
                 <div className="form-floating mb-3">
-                    <textarea className={`form-control textareaArticle ${(formValidation.content && formValidation.content !== 'valid') && 'is-invalid'}`}
+                    <textarea className={`form-control ${inputStyle.textareaArticle} ${(formValidation.content && formValidation.content !== 'valid') && 'is-invalid'}`}
                         id="content"
                         name="content"
                         placeholder="Tu descripcion"

@@ -1,14 +1,40 @@
-.inputTransparent{
+.inputTransparent {
     width: 120px !important;
-    border:  2px #00000000 solid !important;
-    border-bottom:2px #ffffff solid !important;
-    border-radius:0px !important;
+    border: 2px #00000000 solid !important;
+    border-bottom: 2px #ffffff solid !important;
+    border-radius: 0px !important;
     box-sizing: border-box !important;
     transition: border ease 0.5s;
 }
-.inputTransparent:focus-visible{
+
+.inputTransparent:focus-visible {
     box-sizing: border-box !important;
     border: 2px #00000000 solid !important;
-    border-bottom:2px #236e99 solid !important;
+    border-bottom: 2px #236e99 solid !important;
+    box-shadow: 0px 0px 0px rgb(0, 0, 0);
+}
+
+/* Input textarea */
+.textareaArticle {
+    border: 2px #00000000 solid !important;
+    border-bottom: 2px #dbdbdb solid !important;
+    border-radius: 0px !important;
+    box-sizing: border-box !important;
+    height: 100px !important;
+    transition: border ease 0.5s;
+    resize: none;
+}
+
+.textareaArticle:focus {
+    box-sizing: border-box !important;
+    border-bottom: 2px #000 solid !important;
+    box-shadow: 0px 0px 0px rgb(0, 0, 0);
+}
+
+.textareaArticle.is-invalid {
+    border-bottom: 2px #e23f3f solid !important;
+}
+
+.textareaArticle.is-invalid:focus {
     box-shadow: 0px 0px 0px rgb(0, 0, 0);
 }

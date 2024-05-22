@@ -47,10 +47,14 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
     return (
-        <div>
-            <ProfileVisitComponent profileData={userProfile}></ProfileVisitComponent>
-            <ArticlesAll endpoint={`/article/user/${id}`} ></ArticlesAll>
-        </div>
+        <main>
+            <header>
+                <ProfileVisitComponent profileData={userProfile}></ProfileVisitComponent>
+            </header>
+            <section>
+                <ArticlesAll endpoint={`/article/user/${id}`} ></ArticlesAll>
+            </section>
+        </main>
     )
 }
 export default Profile;

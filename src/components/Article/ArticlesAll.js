@@ -62,7 +62,7 @@ const ArticlesAll = ({ endpoint }) => {
             {loading
                 ? (<div> <p>loading</p> </div>)
                 // Mapeo de los articulos
-                : (<ul>{
+                : (<ul className="p-0">{
                     articles.map((article) => {
                         return (
                             <ArticleCard key={article._id} article={article}> </ArticleCard>

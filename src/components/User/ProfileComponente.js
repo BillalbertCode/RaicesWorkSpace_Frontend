@@ -7,7 +7,10 @@ import { useValidateFields } from "@/utils/hooks/useValidateFields";
 import { validateFieldText } from "@/utils/validateFieldText";
 // Solicitud Fetch
 import { fetchPut } from "@/utils/api/fetchPutUser";
-import styles from '@/styles/inputs.module.css'
+// Estilos
+import stylesInput from "@/styles/inputs.module.css"
+import stylesProfile from "@/styles/profile.module.css"
+
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 /**
@@ -60,14 +63,20 @@ const ProfileComponente = ({ token, profileData }) => {
         const info = toast.promise(fetchPut({ [field]: inputData[field] }, token, () => handleEdit(field)),
             {
                 loading: 'Modificando Usuario...',
-                success: <div>Modificacion Exitosa<br /> <div><small>Reniciar para ver los cambios</small> <button className="btn btn-sm btn-secondary" onClick={() => router.push('../')}> Reset <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
-                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
-                </svg></button></div></div>,
+                success: <div>Modificacion Exitosa<br />
+                    <small>Reniciar para ver los cambios</small>
+                    <button className="btn btn-sm btn-secondary mx-1" onClick={() => router.push('../')}>
+                        Reset
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                        </svg>
+                    </button>
+                </div>,
                 error: 'Error al tratar de Modificar el usuario',
             }, {
             success: {
-                duration: 15000
+                duration: 10000
             }
         }).catch(error => {
             console.log(error)
@@ -100,14 +109,14 @@ const ProfileComponente = ({ token, profileData }) => {
     // Hook de validacion de campos
     return (
         <>
-            <div class={`card text-bg-dark component-container ${details && 'active'}`}>
-                <div class="card-img-container">
-                    <img className="card-img profileBackground" src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
+            <div class={`text-bg-dark ${stylesProfile.headerProfileContainer} ${details && stylesProfile['active']}`}>
+                <div class={stylesProfile.profileBackroundContainer}>
+                    <img className={stylesProfile.profileBackground} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
                 </div>
-                <div class="card-img-overlay overlay-content">
+                <div class={`m-3 ${stylesProfile.profileContent}`}>
                     <div className="d-flex">
                         <Link href="/profile">
-                            <img style={{ width: "70px", height: "auto" }} className="iconLink profile" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
+                            <img style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
                         </Link>
                         <div className="px-2 pt-1">
                             <h5 class="card-title">{profileData.name} {profileData.lastName}</h5>
@@ -204,7 +213,7 @@ const EditField = ({
                 {onEdit[fieldName] ?
                     (
                         <form onSubmit={handleSubmit}>
-                            <input className={` text-white border-0 bg-transparent ${styles.inputTransparent}`}
+                            <input className={` text-white border-0 bg-transparent ${stylesInput.inputTransparent}`}
                                 type="text"
                                 id={fieldName}
                                 name={fieldName}

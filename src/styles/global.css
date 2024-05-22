@@ -16,12 +16,6 @@
     animation: reflex 30s linear infinite;
 
 }
-.bg-metallic-animation2 {
-    background: linear-gradient(145deg, rgba(255,255,255,1) 21%, rgba(211,221,239,1) 37%, rgba(141,166,214,1) 56%, rgba(21,72,170,1) 78%, rgba(3,0,54,1) 100%);
-    /* background-size: 600% 600%; */
-
-    /* animation: reflex 0.2s linear infinite; */
-}
 
 /* iconos medianos con animacion hover de reflexion*/
 .iconLink {
@@ -51,6 +45,20 @@
     transform: scale(1.2);
     animation: reflexColorBlack 4s linear;
 }
+/* iconos pequeños*/
+.iconLink-sm {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+/* Profile small */
+.profileIcon{
+    border:solid #000 2px ;
+    border-radius: 50%;
+    width: 60px;
+    height:auto;
+}
+
 
 @keyframes reflexColorBlack {
     0% {
@@ -111,44 +119,6 @@
     }
 }
 
-/* iconos pequeños*/
-.iconLink-sm {
-    width: 25px !important;
-    height: 25px !important;
-}
-
-/* Profile atributes */
-
-/* Profile small */
-.profile{
-    border:solid #000 2px ;
-    border-radius: 50%;
-    width: 60px;
-    height:auto;
-}
-
-/* Input textarea */
-.textareaArticle{
-    border:  2px #00000000 solid !important;
-    border-bottom:2px #dbdbdb solid !important;
-    border-radius:0px !important;
-    box-sizing: border-box !important;
-    height:100px  !important;
-    transition: border ease 0.5s;
-    resize: none;
-}
-.textareaArticle:focus{
-    box-sizing: border-box !important;
-    border-bottom:2px #000 solid !important;
-    box-shadow: 0px 0px 0px rgb(0, 0, 0);
-}
-.textareaArticle.is-invalid{
-    border-bottom:2px #e23f3f solid !important;
-}
-.textareaArticle.is-invalid:focus{
-    box-shadow: 0px 0px 0px rgb(0, 0, 0);
-    
-}
 /* Reflexion linear hacia la izquierda */
 @keyframes reflex {
 
@@ -169,46 +139,4 @@
         background-position: 140% 100%;
         transition: all 0.5 ease;
     }
-}
-
-.profileBackground{
-    filter:blur(1px) brightness(50%);
-}
-.component-container.active{
-    height: 500px;
-    transition: height ease 1s;
-}
-.component-container {
-    position: relative;
-    width: 100%; 
-    height: 200px; 
-    transition: height ease 1s;
-}
-
-.card-img-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.card-img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.overlay-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: start;
-    color: white;
 }

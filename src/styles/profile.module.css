@@ -1,0 +1,49 @@
+/* Header profile background */
+.profileBackground{
+    filter:blur(1px) brightness(50%);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.profileBackroundContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.headerProfileContainer {
+    position: relative;
+    width: 100%; 
+    height: 200px; 
+    transition: height ease 1s;
+}
+
+.headerProfileContainer.active{
+    height: 500px;
+    transition: height ease 1s;
+}
+
+.headerProfileContainerImgContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.profileContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: start;
+    color: white;
+}

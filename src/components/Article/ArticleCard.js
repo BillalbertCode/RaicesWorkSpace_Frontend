@@ -2,6 +2,7 @@
 import ArticleConfig from "./ArticleConfig/ArticleConfig";
 import formateDate from "@/utils/formateDate"; //Convierte la hora
 import Link from "next/link";
+import styles from "@/styles/article.module.css"
 /**
  * @param {object} article - objeto de articulo con todos sus datos
  */
@@ -11,10 +12,10 @@ const ArticleCard = ({ article }) => {
     return (
         <div className="card mb-3" style={{ maxWidth: "700px" }}>
             <div className="row g-0">
-                <div className="card-header bg-metallic-animation2">
+                <div className={`card-header ${styles.bgMetallicFormArticle}`}>
                     <div className=" d-flex p-1 " >
                         <Link href="/profile">
-                            <img className="iconLink profile " src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
+                            <img className="iconLink profileIcon " src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
                         </Link>
                         <Link className=" mx-3 text-start link-dark link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
                             <p className="h6 pt-2">{article.author.name} {article.author.lastName} </p>

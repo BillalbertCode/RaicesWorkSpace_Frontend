@@ -6,7 +6,6 @@ import ProfileComponente from "@/components/User/ProfileComponente";
 import ArticlesAll from "@/components/Article/ArticlesAll";
 import ConexionError from "@/components/Layout/ConexionError";
 // Funciones Utiles
-import { fetchDeleteUser } from "@/utils/api/fetchDeleteUser";
 import UserDeleteModal from "@/components/utils/UserDeleteModal";
 
 const Profile = () => {
@@ -66,12 +65,15 @@ const Profile = () => {
     }
 
     return (
-
-        <div className="container">
-            <ProfileComponente token={token} profileData={userProfile}></ProfileComponente>
-            <UserDeleteModal token={token} action={() => closedSession()}></UserDeleteModal>
-            <ArticlesAll endpoint={`/article/user/${userProfile._id}`} ></ArticlesAll>
-        </div >
+        <main>
+            <header>
+                <ProfileComponente token={token} profileData={userProfile}></ProfileComponente>
+                <UserDeleteModal token={token} action={() => closedSession()}></UserDeleteModal>
+            </header>
+            <section>
+                <ArticlesAll endpoint={`/article/user/${userProfile._id}`} ></ArticlesAll>
+            </section>
+        </main >
     )
 }
 export default Profile;

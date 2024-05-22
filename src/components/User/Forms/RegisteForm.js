@@ -8,11 +8,8 @@ import { requireAge } from "@/utils/requireAge";
 import { useValidateFields } from "@/utils/hooks/useValidateFields";
 import { useContext } from "react";
 import { TokenContext } from "@/contexts/TokenContext";
-/**
- * 
- * @param {function} set - para setear el estado del padre 
- */
-const RegisterForm = ({ set }) => {
+
+const RegisterForm = () => {
     const { loginInit } = useContext(TokenContext)
 
     //Manejo del input de los datos
@@ -284,7 +281,7 @@ const RegisterForm = ({ set }) => {
 
                             {/*  Checkbox de aceptar los terminos, controla el boton de disable*/}
                             {/* esta informacion no se envia al backend, solo habilita el boton  */}
-                            <div className="form-check mb-3 mx-1">
+                            <div style={{height: "40px"}} className="form-check mb-3 mx-1">
                                 <input className="form-check-input"
                                     type="checkbox"
                                     name="condiciones"
@@ -295,7 +292,7 @@ const RegisterForm = ({ set }) => {
                                 <label className="form-check-label" htmlFor="flexCheckDefault">
                                     Terminos y condiciones
                                 </label>
-                                {!acceptTerminos && <div className="form-text">Accepta terminos y condiciones para continuar</div>}
+                                <div className="form-text ">  {!acceptTerminos && "Accepta terminos y condiciones para continuar" }</div>
 
                             </div>
                             <button type="submit" className="btn btn-primary mx-1" disabled={!acceptTerminos} >Registrarse</button>
