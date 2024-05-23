@@ -3,12 +3,12 @@
     border: 2px #00000000 solid !important;
     border-bottom: 2px #ffffff solid !important;
     border-radius: 0px !important;
+    margin-bottom:3px !important ;
+    transition: border ease 200ms;
     box-sizing: border-box !important;
-    transition: border ease 0.5s;
 }
 
 .inputTransparent:focus-visible {
-    box-sizing: border-box !important;
     border: 2px #00000000 solid !important;
     border-bottom: 2px #236e99 solid !important;
     box-shadow: 0px 0px 0px rgb(0, 0, 0);

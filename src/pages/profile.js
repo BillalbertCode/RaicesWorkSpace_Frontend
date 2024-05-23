@@ -65,7 +65,7 @@ const Profile = () => {
     }
 
     return (
-        <main>
+        <main className="container mt-3">
             <header>
                 <ProfileComponente token={token} profileData={userProfile}></ProfileComponente>
                 <UserDeleteModal token={token} action={() => closedSession()}></UserDeleteModal>

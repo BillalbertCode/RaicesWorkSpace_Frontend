@@ -47,7 +47,7 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
     return (
-        <main>
+        <main className="container mt-3">
             <header>
                 <ProfileVisitComponent profileData={userProfile}></ProfileVisitComponent>
             </header>

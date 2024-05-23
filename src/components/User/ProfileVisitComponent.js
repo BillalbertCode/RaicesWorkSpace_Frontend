@@ -12,7 +12,7 @@ const ProfileVisitComponent = ({ profileData }) => {
 
     return (
         <>
-            <div class={`text-bg-dark ${stylesProfile.headerProfileContainer} ${details && stylesProfile['active']}`}>
+            <div class={`card text-bg-dark ${stylesProfile.headerProfileContainer} ${details && stylesProfile['active']}`}>
                 <div class={stylesProfile.profileBackroundContainer}>
                     <img className={stylesProfile.profileBackground} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
                 </div>
@@ -28,34 +28,36 @@ const ProfileVisitComponent = ({ profileData }) => {
                     </div>
                     {/* Details */}
                     <div className="d-flex mt-3 mx-2" >
-                        <svg onClick={() => setDetails(!details)} style={{ width: "30px" }} className={`iconLink ${details && 'text-info'}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <div title="Informacion del usuario">
+                        <svg onClick={() => setDetails(!details)} style={{ width: "30px" }} className='iconLink'   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
                             <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
                         </svg>
+                        </div>
 
                         <div className={`mx-4 ${details ? 'container' : 'd-none'} `}>
                             <h3 >Informacion del usuario</h3>
 
                             {/* details campos */}
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item text-white bg-transparent">
-                                    <label className="input-group-text text-white border-0 bg-transparent">Nombre: {profileData.name}</label>
+                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Nombre:</span> {profileData.name}</p>
                                 </li>
-                                <li className="list-group-item text-white bg-transparent">
-                                    <label className="input-group-text text-white border-0 bg-transparent">Apellido: {profileData.lastName}</label>
+                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Apellido:</span> {profileData.lastName}</p>
                                 </li>
 
-                                <li className="list-group-item text-white bg-transparent">
-                                    <label className="input-group-text text-white border-0 bg-transparent">Email: {profileData.email}</label>
+                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Email:</span> {profileData.email}</p>
                                 </li>
-                                <li className="list-group-item text-white bg-transparent">
-                                    <label className="input-group-text text-white border-0 bg-transparent">Username: @{profileData.username}</label>
+                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Username:</span> @{profileData.username}</p>
                                 </li>
-                                <li className="list-group-item text-white bg-transparent">
-                                    <label className="input-group-text text-white border-0 bg-transparent"> Genero: {profileData.sex}</label>
+                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"> <span className="fw-bold me-2">Genero:</span> {profileData.sex}</p>
                                 </li>
-                                <li className="list-group-item text-white bg-transparent">
-                                    <label className="input-group-text text-white border-0 bg-transparent">  BirthDate: {profileData.birthDate}</label>
+                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent">  <span className="fw-bold me-2">BirthDate:</span> {profileData.birthDate}</p>
                                 </li>
 
                             </ul>
