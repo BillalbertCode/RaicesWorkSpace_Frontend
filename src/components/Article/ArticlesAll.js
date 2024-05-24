@@ -57,12 +57,11 @@ const ArticlesAll = ({ endpoint }) => {
     }
 
     return (
-        <div className="container-fluid text-center d-flex flex-column align-items-center mt-5">
-           
+        <div className="container-fluid text-center mt-5">
             {loading
-                ? (<div> <p>loading</p> </div>)
+                ? ( <p>loading</p>)
                 // Mapeo de los articulos
-                : (<ul className="p-0">{
+                : (<ul className="d-flex flex-column align-items-center p-0 gap-4">{
                     articles.map((article) => {
                         return (
                             <ArticleCard key={article._id} article={article}> </ArticleCard>

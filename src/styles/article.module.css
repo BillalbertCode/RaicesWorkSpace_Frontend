@@ -1,3 +1,37 @@
 .bgMetallicFormArticle {
     background: linear-gradient(145deg, rgba(255, 255, 255, 1) 21%, rgba(211, 221, 239, 1) 37%, rgba(141, 166, 214, 1) 56%, rgba(21, 72, 170, 1) 78%, rgba(3, 0, 54, 1) 100%);
 }
+
+.containerCard {
+    width: 70%;
+    max-width: 800px !important;
+}
+
+@media (max-width: 425px) {
+    .containerCard {
+        width: 80%;
+        position: relative;
+    }
+    .bgMetallicFormArticle{
+        background: #ffffff00;
+    }
+    .imgCardContent {
+        justify-content: center;
+        width: 100%;
+        height: 100% ;
+        position: absolute;
+        filter: opacity(15%) blur(3px);
+        transition: filter ease 0.5s;
+    }
+    .imgCardContent.active{
+        filter: opacity(70%) blur(0px) !important;
+    }
+    .imgArticle svg{
+        width:25px !important;
+    }
+
+    .imgCardContent img{
+        width: 100%;
+    }
+
+}
