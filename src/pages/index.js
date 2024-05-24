@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { TokenContext } from "@/contexts/TokenContext";
-import Layout from "@/components/Layout/Layout";
+import LayoutHome from "@/components/Layout/LayoutHome";
 import ArticlesAll from "@/components/Article/ArticlesAll";
 import ArticleForm from "@/components/Article/ArticleForm";
 
@@ -45,7 +45,7 @@ const HomePage = () => {
 
             {loginStatus
                 ? <ArticleForm ></ArticleForm>
-                : <Layout></Layout>}
+                : <LayoutHome></LayoutHome>}
             <ArticlesAll endpoint='/article/all' ></ArticlesAll>
            
         </main>

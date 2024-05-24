@@ -1,11 +1,16 @@
 // Formulario del Login que provee el token
 import { useContext, useState } from "react";
 import Link from "next/link";
+// Contextos
 import { TokenContext } from "@/contexts/TokenContext";
+// Funciones
 import { handleChange } from "@/utils/handleChange"
-import { fetchLogin } from "@/utils/api/fetchLogin";
 import { validateFieldText } from "@/utils/validateFieldText";
+// Custom Hooks
 import { useValidateFields } from "@/utils/hooks/useValidateFields";
+// Perticiones
+import { fetchLogin } from "@/utils/api/fetchLogin";
+
 const LoginForm = () => {
     //Contexto para cambiar el token e iniciar sesion
     const { loginInit } = useContext(TokenContext)
@@ -32,11 +37,11 @@ const LoginForm = () => {
     }
 
     return (
-        <div className="card text-bg-light border border-primary  bg-body " style={{ width: "70%", margin: "auto" }} >
-            <div className="card-header d-flex justify-content-between align-items-center bg-metallic-animation text-light">
-                <h5 >Iniciar Sesion</h5>
+        <div className="card border-primary bg-transparent " style={{ width: "80%"}} >
+            <div className="card-header bg-metallic-animation text-light">
+                <h5 className="h5 m-0">Iniciar Sesion</h5>
             </div>
-            <div className="card-body  px-4">
+            <div className="card-body px-4"> 
                 <form noValidate onSubmit={handleSubmit}>
 
                     <div className="input-group input-group-sm mb-2">
@@ -67,10 +72,11 @@ const LoginForm = () => {
                         {(formValidation.password && formValidation.password !== 'valid') && <div className="invalid-feedback"> {formValidation.password} </div>}
 
                     </div>
-                    <div className="d-flex justify-content-between">
-                        <button type="submit" className="btn btn-outline-primary btn-sm mb-2">Iniciar Sesion</button>
+                    <div className="row ">
+                        <button type="submit" className="col-12 col-md-6 btn btn-outline-primary btn-sm mb-2">Iniciar Sesion</button>
 
-                        <Link href="/register" className="icon-link icon-link-hover link-body-emphasis link-underline-opacity-0 mb-2">Registrarse
+                        <Link href="/register" className="col-12 col-md-6 justify-content-md-end icon-link icon-link-hover link-body-emphasis link-underline-opacity-0 mb-2">
+                            Registrarse
                             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
                             </svg>

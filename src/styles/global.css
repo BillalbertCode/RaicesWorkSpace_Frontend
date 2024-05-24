@@ -1,7 +1,7 @@
 /* usar Sass para mayor fluides con bootstrap */
 :root {
     --metallic-blue: #4567b7;
-    --metallic-blue-dark: #2f4f7f;
+    --metallic-blue-dark: #295fb1;
 }
 
 
@@ -10,10 +10,10 @@
 }
 
 .bg-metallic-animation {
-    background: linear-gradient(275deg, var(--metallic-blue-dark), var(--metallic-blue), var(--metallic-blue-dark), var(--metallic-blue-dark));
+    background: linear-gradient(275deg, var(--metallic-blue-dark), #6c95f5, var(--metallic-blue-dark), var(--metallic-blue-dark));
     background-size: 600% 600%;
 
-    animation: reflex 30s linear infinite;
+    animation: reflex 20s linear infinite;
 
 }
 
