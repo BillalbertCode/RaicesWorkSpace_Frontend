@@ -10,7 +10,6 @@ import { useValidateFields } from "@/utils/hooks/useValidateFields"
 import { validateFieldText } from "@/utils/validateFieldText"
 // Estilos
 import inputStyle from "@/styles/inputs.module.css"
-
 // Libreria de Notificaciones/Toast
 import toast from "react-hot-toast"
 import Link from "next/link"
@@ -79,7 +78,7 @@ const ArticleForm = () => {
     }
 
     return (
-        <div style={{ width: "60%" }} className="container-sm m-4">
+        <div className={`container-sm m-4 ${inputStyle.containerFormArticle}`}>
             <div className=" d-flex " >
                 <Link href="/profile">
                     <img className="iconLink profileIcon" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
