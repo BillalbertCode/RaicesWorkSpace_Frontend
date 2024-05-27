@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import ArticlesAll from "@/components/Article/ArticlesAll";
 import ConexionError from "@/components/Layout/ConexionError";
 import ProfileVisitComponent from "@/components/User/ProfileVisitComponent";
-
+// Styles
+import styleProfile from "@/styles/profile.module.css"
 const Profile = () => {
     const router = useRouter()
     const { id } = router.query
@@ -47,11 +48,11 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
     return (
-        <main className="container mt-3">
-            <header>
+        <main className="d-flex flex-column">
+            <header className={`container mb-3 ${styleProfile.header}`}>
                 <ProfileVisitComponent profileData={userProfile}></ProfileVisitComponent>
             </header>
-            <section>
+            <section className="container-fluid p-0 d-flex flex-column align-items-center">
                 <ArticlesAll endpoint={`/article/user/${id}`} ></ArticlesAll>
             </section>
         </main>

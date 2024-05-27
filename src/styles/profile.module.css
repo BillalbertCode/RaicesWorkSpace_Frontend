@@ -1,10 +1,11 @@
 /* Header profile background */
-.profileBackground{
-    filter:blur(1px) brightness(25%);
+.profileBackground {
+    filter: blur(1px) brightness(25%);
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
+
 .profileBackroundContainer {
     position: absolute;
     top: 0;
@@ -14,16 +15,17 @@
     overflow: hidden;
 }
 
-.headerProfileContainer {
+.cardProfileContainer {
     position: relative;
-    width: 100%; 
-    height: 200px; 
+    width: 100%;
+    height: 200px;
     overflow: hidden;
     transition: height ease 1s;
+    border-radius: 10px;
 }
 
-.headerProfileContainer.active{
-    height: 500px;
+.cardProfileContainer.active {
+    height: 520px;
     transition: height ease 1s;
 }
 
@@ -47,4 +49,68 @@
     justify-content: flex-start;
     text-align: start;
     color: white;
+}
+
+@media (max-width: 425px) {
+    .header {
+        width: 100%;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header>button {
+        margin: auto;
+    }
+
+    .cardProfileContainer {
+        border-radius: 0px;
+        transition: height ease 0.5s;
+    }
+
+    .profileBackroundContainer {
+        border: 0px solid #fff !important;
+    }
+
+    .cardProfileContainer {
+        border: 0px solid #fff !important;
+        height: 150px;
+    }
+
+    .cardProfileContainer.active {
+        height: 420px;
+        transition: height ease 0.5s;
+    }
+
+    .containerList {
+        margin: 0px !important;
+        padding: 0px;
+        font-size: 14px !important;
+    }
+
+    .containerList ul li {
+        padding: 0px !important;
+    }
+
+    .containerList ul li>div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .containerList label {
+        font-size: 14px !important;
+    }
+
+    .containerList ul li>div>div {
+        border: none !important;
+    }
+
+    .containerList ul li p {
+        border: none !important;
+        width: 100% !important;
+        padding-left: 12px !important;
+    }
+
 }

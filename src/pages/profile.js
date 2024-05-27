@@ -4,9 +4,13 @@ import { TokenContext } from "@/contexts/TokenContext";
 // Componentes
 import ProfileComponente from "@/components/User/ProfileComponente";
 import ArticlesAll from "@/components/Article/ArticlesAll";
+import ArticleForm from "@/components/Article/ArticleForm";
 import ConexionError from "@/components/Layout/ConexionError";
 // Funciones Utiles
 import UserDeleteModal from "@/components/utils/UserDeleteModal";
+// Styles
+import styleProfile from "@/styles/profile.module.css"
+
 
 const Profile = () => {
     const { token, closedSession } = useContext(TokenContext)
@@ -65,12 +69,14 @@ const Profile = () => {
     }
 
     return (
-        <main className="container mt-3">
-            <header>
+        <main className="d-flex flex-column ">
+            <header className={`container mb-3 ${styleProfile.header}`}>
                 <ProfileComponente token={token} profileData={userProfile}></ProfileComponente>
                 <UserDeleteModal token={token} action={() => closedSession()}></UserDeleteModal>
             </header>
-            <section>
+
+            <section className="container-fluid p-0 d-flex flex-column align-items-center">
+                <ArticleForm ></ArticleForm>
                 <ArticlesAll endpoint={`/article/user/${userProfile._id}`} ></ArticlesAll>
             </section>
         </main >

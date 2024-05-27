@@ -108,94 +108,91 @@ const ProfileComponente = ({ token, profileData }) => {
     }
     // Hook de validacion de campos
     return (
-        <>
-            <div class={`card text-bg-dark ${stylesProfile.headerProfileContainer} ${details && stylesProfile['active']}`}>
-                <div class={stylesProfile.profileBackroundContainer}>
-                    <img className={stylesProfile.profileBackground} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
-                </div>
-                <div class={`m-3 ${stylesProfile.profileContent}`}>
-                    <div className="d-flex">
-                        <Link href="/profile">
-                            <img style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
-                        </Link>
-                        <div className="px-2 pt-1">
-                            <h5 class="card-title">{profileData.name} {profileData.lastName}</h5>
-                            <p class="card-text">@{profileData.username}</p>
-                        </div>
+        <div class={` text-bg-dark ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
+            <div class={stylesProfile.profileBackroundContainer}>
+                <img className={stylesProfile.profileBackground} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
+            </div>
+            <div class={`m-3 ${stylesProfile.profileContent}`}>
+                <div className="d-flex">
+                    <Link href="/profile">
+                        <img style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
+                    </Link>
+                    <div className="px-2 pt-1">
+                        <h5 class="card-title">{profileData.name} {profileData.lastName}</h5>
+                        <p class="card-text">@{profileData.username}</p>
                     </div>
-                    {/* Details */}
-                    <div className="d-flex mt-3 mx-2" >
-                        <div title="Informacion del usuario">
-                            <svg onClick={() => setDetails(!details)} style={{ width: "30px" }} className='iconLink' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
-                                <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
-                            </svg>
-                        </div>
+                </div>
+                {/* Details */}
+                <div title="Informacion del usuario">
+                    <svg onClick={() => setDetails(!details)} style={{ width: "30px" }} className='iconLink' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
+                    </svg>
+                </div>
+                <div className="d-flex mt-3 mx-2" >
 
-                        <div className={`mx-4 ${details ? 'container' : 'd-none'} `}>
-                            <h3 >Informacion del usuario</h3>
+                    <div className={`mx-4 ${details ? 'container' : 'd-none'} ${stylesProfile.containerList} `}>
+                        <h3 >Informacion del usuario</h3>
 
-                            {/* details campos */}
-                            <ul className="list-group list-group-flush">
+                        {/* details campos */}
+                        <ul className="list-group list-group-flush">
 
-                                {/* Nombre */}
-                                <EditField
-                                    label="Nombre"
-                                    fieldName={'name'}
-                                    onEdit={edit}
-                                    value={inputData}
-                                    profileData={profileData}
-                                    toogleEdit={() => handleEdit('name')}
-                                    handleSubmit={(e) => handleSubmit(e, 'name')}
-                                    onChange={(e) => handleChange(e, inputData, setInputData)}
-                                    error={validacionName.formValidation.name}
-                                >
-                                </EditField>
+                            {/* Nombre */}
+                            <EditField
+                                label="Nombre"
+                                fieldName={'name'}
+                                onEdit={edit}
+                                value={inputData}
+                                profileData={profileData}
+                                toogleEdit={() => handleEdit('name')}
+                                handleSubmit={(e) => handleSubmit(e, 'name')}
+                                onChange={(e) => handleChange(e, inputData, setInputData)}
+                                error={validacionName.formValidation.name}
+                            >
+                            </EditField>
 
-                                {/* Apellido */}
-                                <EditField
-                                    label="Apellido"
-                                    fieldName={'lastName'}
-                                    onEdit={edit}
-                                    value={inputData}
-                                    profileData={profileData}
-                                    toogleEdit={() => handleEdit('lastName')}
-                                    handleSubmit={(e) => handleSubmit(e, 'lastName')}
-                                    onChange={(e) => handleChange(e, inputData, setInputData)}
-                                    error={validacionLastName.formValidation.lastName}
-                                >
-                                </EditField>
-                                {/* Email */}
-                                <EditField
-                                    label="Email"
-                                    fieldName={'email'}
-                                    onEdit={edit}
-                                    value={inputData}
-                                    profileData={profileData}
-                                    toogleEdit={() => handleEdit('email')}
-                                    handleSubmit={(e) => handleSubmit(e, 'email')}
-                                    onChange={(e) => handleChange(e, inputData, setInputData)}
-                                    error={validacionEmail.formValidation.email}
-                                >
+                            {/* Apellido */}
+                            <EditField
+                                label="Apellido"
+                                fieldName={'lastName'}
+                                onEdit={edit}
+                                value={inputData}
+                                profileData={profileData}
+                                toogleEdit={() => handleEdit('lastName')}
+                                handleSubmit={(e) => handleSubmit(e, 'lastName')}
+                                onChange={(e) => handleChange(e, inputData, setInputData)}
+                                error={validacionLastName.formValidation.lastName}
+                            >
+                            </EditField>
+                            {/* Email */}
+                            <EditField
+                                label="Email"
+                                fieldName={'email'}
+                                onEdit={edit}
+                                value={inputData}
+                                profileData={profileData}
+                                toogleEdit={() => handleEdit('email')}
+                                handleSubmit={(e) => handleSubmit(e, 'email')}
+                                onChange={(e) => handleChange(e, inputData, setInputData)}
+                                error={validacionEmail.formValidation.email}
+                            >
 
-                                </EditField>
-                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Username:</span> @{profileData.username}</p>
+                            </EditField>
+                            <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Username:</span> @{profileData.username}</p>
+                            </li>
+                            <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
+                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Genero:</span> {profileData.sex}</p>
+                            </li>
+                            <li className="list-group-item p-1 pt-2  text-white bg-transparent border-0">
+                                <p className="p-2 ps-4 text-white border w-50 rounded-pill bg-transparent"> <span className="fw-bold me-2">BirthDate:</span> {profileData.birthDate}</p>
+                            </li>
 
-                                </li>
-                                <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                    <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Genero:</span> {profileData.sex}</p>
-                                </li>
-                                <li className="list-group-item p-1 pt-2  text-white bg-transparent border-0">
-                                    <p className="p-2 ps-4 text-white border w-50 rounded-pill bg-transparent"> <span className="fw-bold me-2">BirthDate:</span> {profileData.birthDate}</p>
-                                </li>
-
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 const EditField = ({
@@ -211,13 +208,13 @@ const EditField = ({
 }) => {
     return (
         <li className="list-group-item border-0  text-white bg-transparent">
-            <div className="row">
-                <div className="col d-flex flex-row border rounded-pill align-items-center input-group">
+            <div className="row ">
+                <div className="col border rounded-pill align-items-center input-group">
                     <label className="input-group-text text-white border-0 bg-transparent fw-bold">{label}:</label>
                     {onEdit[fieldName] ?
                         (
                             <>
-                                <form className="d-flex "  onSubmit={handleSubmit}>
+                                <form className="d-flex " onSubmit={handleSubmit}>
                                     <input className={`form-control form-control-sm text-white  border-0 bg-transparent ${stylesInput.inputTransparent}`}
                                         type="text"
                                         id={fieldName}
@@ -246,7 +243,7 @@ const EditField = ({
                         </svg>
                     </button>
                 </div>
-                <div className="col d-flex align-items-center gap-2 text-danger">
+                <div className="col gap-2 text-danger">
                     {
                         (error && error !== 'valid') &&
                         <>
