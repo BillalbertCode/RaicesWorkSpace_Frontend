@@ -3,20 +3,19 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    bottom: 50 ;
     left: 0;
     z-index: -1;
-    animation: 10s linear infinite animatedCuadros;
+    animation-name: animatedCuadros;
+    animation-timing-function: linear;
 }
 
 @keyframes animatedCuadros {
     0% {
-        transform: rotate(0);
         left: 0;
     }
 
     100% {
-        transform: rotate(1turn);
+        transform: rotate(0turn);
         left: 100%;
     }
 }
