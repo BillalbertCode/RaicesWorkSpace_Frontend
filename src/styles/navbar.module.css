@@ -3,11 +3,11 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    left: 0;
-    z-index: -1;
+    left: 120%;
     animation-name: animatedCuadros;
     animation-timing-function: linear;
 }
+
 
 @keyframes animatedCuadros {
     0% {

@@ -18,8 +18,10 @@ const Header = () => {
   const [cuadrosBg, setCuadrosBg] = useState([])
   const navbarRef = useRef(null)
 
+  // Me gustaria que esta funsion sea un objeto pero ya me e vuelto loco 
   const createCuadroBg = () => {
     // Tiempo para terminar la animacion
+    const id = Math.random().toString(36).substr(2, 9);
     const tempoTranslateMin = 8
     const tempoTranslateMax = 15
 
@@ -37,9 +39,7 @@ const Header = () => {
     const rotateVelocimetro = Math.random() * (rotateVelocimetroMax - rotateVelocimetroMin) + rotateVelocimetroMin
     // allamos la velocidad
     const velocidad = distancia / tempoTranslate
-    console.log(velocidad)
     const rotacion = velocidad * rotateVelocimetro
-    console.log(rotacion)
 
     // creamos los estilos para que el elemento pueda hacer las fisicas mensionadas
     const stylesCuadros = {
@@ -47,30 +47,36 @@ const Header = () => {
       'animation-duration': `${tempoTranslate}s`,
       transform: `rotate(${rotacion}turn)`
     }
+    const removeCuadro = () => {
+      setCuadrosBg((prevCuadrosBg) => prevCuadrosBg.filter((cuadro) => cuadro.key !== id))
+
+    }
     // creamos el elemento
-    setCuadrosBg((prevCuadrosBg) => [...prevCuadrosBg, <div style={stylesCuadros} className={stylesNavbar.bgAnimated} key={rotacion}></div>])
-    const timeoutId = setTimeout(() => {
-      setCuadrosBg((prevCuadrosBg) => prevCuadrosBg.slice(1)); // Elimina el primer div cada 10 segundos
-    }, tempoTranslate * 1000);
+    setCuadrosBg((prevCuadrosBg) => [...prevCuadrosBg,
+    <div
+      style={stylesCuadros}
+      className={stylesNavbar.bgAnimated}
+      key={id}
+      onClick={removeCuadro}
+      onAnimationEnd={removeCuadro}
+    >
+    </div>
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    ])
   }
-
 
   return (
     <nav ref={navbarRef} className="navbar navbar-expand-lg bg-transparent position-relative overflow-hidden">
-      {/* Cuadrados del fondo del navbar */}
-      {cuadrosBg}
+
       <div className="container-fluid ">
-        <button className="btn btn-success" onClick={createCuadroBg}>cuadro</button>
-        <Link href="/" className="navbar-brand" >Raices</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        {cuadrosBg}
+        <button className="btn btn-success z-1 " onClick={createCuadroBg}>cuadro</button>
+        <Link href="/" className="navbar-brand z-1" >Raices</Link>
+        <button className="navbar-toggler z-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
+          <div className="navbar-nav z-1">
             <Link href="/" className="nav-link ">Home</Link>
 
             {/* Accion segun el estatus de inicio de sesion */}
@@ -89,6 +95,8 @@ const Header = () => {
             <button className="btn btn-outline-success" type="submit">Search</button>
           </form> */}
         </div>
+        {/* Cuadrados del fondo del navbar */}
+
       </div>
     </nav>
   );
