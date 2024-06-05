@@ -1,0 +1,25 @@
+/* componente de animacion de cuadros */
+
+/* Propiedades del cuadro */
+.bgAnimated {
+    background-color: rgb(105, 200, 255);
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    left: 110%;
+    animation-name: animatedCuadros;
+    animation-timing-function: linear;
+}
+
+/* Animacion del movimieto en el eje X del cuadro */
+@keyframes animatedCuadros {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        transform: rotate(0turn);
+        left: 100%;
+    }
+}
