@@ -10,7 +10,43 @@
     left: 110%;
     animation-name: animatedCuadros;
     animation-timing-function: linear;
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
+
+/* Explosion del cuadro */
+.bgAnimated.exploding {
+    opacity: 0;
+}
+
+.bgAnimated.exploding::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: rgb(12, 166, 255);
+    border-radius: 50%;
+    animation: explode 0.15s ease-in-out;
+}
+
+/* Explosion del cuadro Animacion */
+@keyframes explode {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+}
+
 
 /* Animacion del movimieto en el eje X del cuadro */
 @keyframes animatedCuadros {

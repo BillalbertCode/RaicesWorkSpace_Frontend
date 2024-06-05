@@ -2,7 +2,7 @@
 // Este componente es de uso Estetico solo para el diseño
 // Cuenta con la creacion del cuadro periodicamente, avalancha de cuadros y eleminacion del mismo
 // Hooks
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 // Styles
 import stylesCuadrosBg from '@/styles/cuadroAnimation.module.css'
@@ -55,7 +55,8 @@ const CuadroAnimation = ({ containerRef }) => {
             tempoTranslate,
             rotateVelocimetro,
             velocidad,
-            rotacion
+            rotacion,
+            exploding: false
         }
     }
     // Implementamos los estilos del cuadro, como donde estara posicionado etc
@@ -63,28 +64,43 @@ const CuadroAnimation = ({ containerRef }) => {
         return {
             bottom: `${cuadro.altura}%`,
             animationDuration: `${cuadro.tempoTranslate}s`,
-            transform: `rotate(${cuadro.rotacion}turn)`
+            transform: `rotate(${cuadro.rotacion}turn)`,
         }
     }
 
     // le asignamos el cuadro al estado
-    const createCuadroBg = () => {
+    const createCuadroBg = useCallback(() => {
         const cuadro = createCuadro()
         setCuadrosBg((prevCuadrosBg) => [...prevCuadrosBg, cuadro])
-    }
+    }, [setCuadrosBg])
+
     // Funcion de avalancha de cuadros para cuando cambie de pagina
     const createCuadroAvalancha = () => {
         for (let i = 0; i < 50; i++) {
             createCuadroBg()
         }
     };
+
     // Funcion de elimacion del cuadro, aplicada en el final del recorrido y en el click
-    const removeCuadro = (id) => {
-        setCuadrosBg((prevCuadrosBg) => prevCuadrosBg.filter((cuadro) => cuadro.id !== id))
-    }
+    const removeCuadro = (cuadro) => {
+
+        // Añadimos exploding true para iniciar la animacion
+        setCuadrosBg((prevCuadrosBg) => {
+            const index = prevCuadrosBg.findIndex((c) => c.id === cuadro.id);
+            if (index !== -1) {
+                prevCuadrosBg[index].exploding = true;
+            }
+            return [...prevCuadrosBg];
+        });
+
+        // tiempo de espera antes de eliminar el cuadro
+        setTimeout(() => {
+            setCuadrosBg((prevCuadrosBg) => prevCuadrosBg.filter((c) => c.id !== cuadro.id));
+        }, 500);
+    };
 
 
-    // UseEffect para cuando cambie de pantalla
+    // UseEffect para cuando cambie de pantalla enviar una avalancha de cuadros
     useEffect(() => {
         containerWidth = containerRef.current.offsetWidth
         router.events.on('routeChangeComplete', createCuadroAvalancha);
@@ -92,7 +108,6 @@ const CuadroAnimation = ({ containerRef }) => {
             router.events.off('routeChangeComplete', createCuadroAvalancha);
         };
     }, [router]);
-
 
     // UseEffect para crear cuadros periodicamente
     useEffect(() => {
@@ -107,15 +122,16 @@ const CuadroAnimation = ({ containerRef }) => {
             }
         }
     }, [])
+
     return (
         <>
             {cuadrosBg.map((cuadro) => (
                 <div
                     key={cuadro.id}
                     style={createStylesCuadro(cuadro)}
-                    className={stylesCuadrosBg.bgAnimated}
-                    onClick={() => removeCuadro(cuadro.id)}
-                    onAnimationEnd={() => removeCuadro(cuadro.id)}
+                    onClick={() => removeCuadro(cuadro)}
+                    className={`${stylesCuadrosBg.bgAnimated} ${cuadro.exploding && stylesCuadrosBg.exploding}`}
+                    onAnimationEnd={() => removeCuadro(cuadro)}
                 />
             ))}
         </>
