@@ -1,0 +1,41 @@
+.navContainer {
+    margin: 0px 4px;
+}
+
+.navIcons {
+    display: none;
+}
+
+@media (max-width: 425px) {
+    .toogleNav {
+        border: none !important;
+        box-shadow: none !important;
+        z-index: 1;
+        transform: rotate(0deg);
+        transition: transform 0.2s ease;
+    }
+
+    .toogleNav:focus svg {
+        transform: rotate(90deg);
+        transition: transform 0.2s ease;
+    }
+
+    /* Contenedor de links de navegacion */
+    .navContainer {
+        gap: 2px;
+        z-index: 2;
+        justify-content: end;
+        margin: 4px;
+        font-size: 12px !important;
+    }
+
+    .navContainer button {
+        font-size: 10px !important;
+    }
+
+    .navIcons {
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
+}

@@ -44,7 +44,7 @@ const LoginModal = () => {
     return (
         <>
             {/* Boton a cambiar pasar solo la funcion al padre para que controle el evento de click con un boton propio  */}
-            <Button variant='none' onClick={handleShow}>
+            <Button variant='outline-dark' onClick={handleShow}>
                 Iniciar Sesion
             </Button>
 
