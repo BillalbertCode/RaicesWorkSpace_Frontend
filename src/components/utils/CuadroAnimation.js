@@ -76,7 +76,7 @@ const CuadroAnimation = ({ containerRef }) => {
 
     // Funcion de avalancha de cuadros para cuando cambie de pagina
     const createCuadroAvalancha = () => {
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 14; i++) {
             createCuadroBg()
         }
     };
