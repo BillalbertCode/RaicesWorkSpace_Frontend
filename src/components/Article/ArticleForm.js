@@ -1,4 +1,10 @@
-// Creacion de Article
+// Creacion de un Article
+// Este modulo contiene: 
+//  Formulario y su diseño
+//  Validacion del mismo
+//  Notificacion si fue exitoso
+//  Renderizacion del article en la lista
+
 import { useContext, useState, useEffect } from "react"
 import { TokenContext } from "@/contexts/TokenContext"
 import { ArticleContext } from "@/contexts/ArticleContext"
@@ -48,11 +54,11 @@ const ArticleForm = () => {
     }
 
     // Creacion e implementacion de un nuevo article en el contexto
+    // Esto es para Optimizar la vizualizacion de un nuevo article sin necesidad de un fetch
     const createArticle = () => {
         // datos para renderizar la lista de articulos
-        // Este formato es el formato esperado por el ArticleCard
+        // Este formato es el formato esperado por el componente ArticleCard
         // le falta solo el id del article que se obtiene en la base de datos
-        // Esto es para Optimizar la vizualizacion de un nuevo article sin necesidad de un fetch
         const newArticle = {
             title: articleData.title,
             content: articleData.content,

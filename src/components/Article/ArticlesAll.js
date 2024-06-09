@@ -1,3 +1,4 @@
+// Mostrar Una lista de articles General o Individual
 // recibe como promp el endpoint y renderiza cada articulo que llega del endpoint
 // los endpoints esperados son: los articulos de un usuario o todos los articulos general
 
@@ -8,13 +9,15 @@ import ArticleCard from "./ArticleCard";
  * @param {string} endpoint - endpoint del array de los objetos articles
  */
 const ArticlesAll = ({ endpoint }) => {
+    // Lista de articles del contexto
     const { articles, setArticles } = useContext(ArticleContext)
     // Manejo de estados
     const [loading, setloading] = useState(true);
     const [estateErrors, setEstateErrors] = useState(false)
 
     useEffect(() => {
-        // funcion anonima autocombocada
+        // Peticion de la lista de articles
+        // Y actualizacion de la lista del contexto
         (async () => {
             try {
                 const response = await fetch(`http://localhost:5000${endpoint}`)

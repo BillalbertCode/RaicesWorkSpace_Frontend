@@ -20,6 +20,7 @@ const ArticleConfig = ({ article }) => {
     const deleteArticle = () => {
         setArticles((prevArticles => prevArticles.filter((articles) => articles._id !== article._id )))
     }
+    
     // Notificacion status + solicitud delete
     const toastFetchDelete = () => {
         const info = toast.promise(fetchDeleteArticle(article._id, token, deleteArticle),
