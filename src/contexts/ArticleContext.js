@@ -3,15 +3,10 @@ import { createContext, useState } from "react";
 export const ArticleContext = createContext()
 
 export const ArticleProvider = ({ children }) => {
-    const [articleStatus, setArticleStatus] = useState(false);
-
-    // Funcion de renderizacion de articulos
-    const toogleRender = () => {
-        setArticleStatus(!articleStatus)
-    }
-
+    const [articles, setArticles] = useState([]);
+    
     return (
-        <ArticleContext.Provider value={{ articleStatus, toogleRender }}>
+        <ArticleContext.Provider value={{ articles, setArticles }}>
             {children}
         </ArticleContext.Provider>
     )

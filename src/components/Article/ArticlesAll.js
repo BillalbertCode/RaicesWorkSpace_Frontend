@@ -8,9 +8,8 @@ import ArticleCard from "./ArticleCard";
  * @param {string} endpoint - endpoint del array de los objetos articles
  */
 const ArticlesAll = ({ endpoint }) => {
-    const { articleStatus } = useContext(ArticleContext)
+    const { articles, setArticles } = useContext(ArticleContext)
     // Manejo de estados
-    const [articles, setArticles] = useState([]);
     const [loading, setloading] = useState(true);
     const [estateErrors, setEstateErrors] = useState(false)
 
@@ -38,7 +37,7 @@ const ArticlesAll = ({ endpoint }) => {
             }
         })();
 
-    }, [articleStatus]);
+    }, []);
 
     if (articles === null) {
         return (
