@@ -8,17 +8,21 @@ import { ArticleContext } from "@/contexts/ArticleContext";
 import { fetchDeleteArticle } from "@/utils/api/fetchDeleteArticle";
 import toast from "react-hot-toast";
 /**
- * @param {object} article - Modificacion de dicho article
+ * @param {object} article - Pedimos los datos del article para modificarlo
  */
 const ArticleConfig = ({ article }) => {
     //Contexto de token para saber si el usuario tiene los privilegios necesarios
     const { loginStatus, tokenId, token } = useContext(TokenContext);
     //Contexto del articulo para renderizarlo
-    const { toogleRender } = useContext(ArticleContext)
+    const { setArticles } = useContext(ArticleContext)
 
+    // Funcion para eliminar articulo del contexto (visualmente) 
+    const deleteArticle = () => {
+        setArticles((prevArticles => prevArticles.filter((articles) => articles._id !== article._id )))
+    }
     // Notificacion status + solicitud delete
-    const toastFetch = () => {
-        const info = toast.promise(fetchDeleteArticle(article._id, token, toogleRender),
+    const toastFetchDelete = () => {
+        const info = toast.promise(fetchDeleteArticle(article._id, token, deleteArticle),
             {
                 loading: 'Eliminando articulo...',
                 success: 'Articulo eliminado con exito',
@@ -38,7 +42,7 @@ const ArticleConfig = ({ article }) => {
                     {/* Button editar y mas proximo */}
                     {/* <button className="btn btn-primary mr-2">Editar</button> */}
                     {/* Funcion de eliminacion */}
-                    <button className="btn" onClick={toastFetch}>
+                    <button className="btn" onClick={toastFetchDelete}>
                         <div className="d-flex align-items-center gap-2">
                             Eliminar
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3-fill" viewBox="0 0 16 16">
