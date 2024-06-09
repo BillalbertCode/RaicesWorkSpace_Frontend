@@ -11,18 +11,18 @@ const ProfileVisitComponent = ({ profileData }) => {
     const [details, setDetails] = useState(false)
 
     return (
-        <div class={`text-bg-dark ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
-            <div class={stylesProfile.profileBackroundContainer}>
+        <div className={`text-bg-dark ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
+            <div className={stylesProfile.profileBackroundContainer}>
                 <img className={stylesProfile.profileBackground} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
             </div>
-            <div class={`m-3 ${stylesProfile.profileContent}`}>
+            <div className={`m-3 ${stylesProfile.profileContent}`}>
                 <div className="d-flex">
                     <Link href="/profile">
                         <img style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
                     </Link>
                     <div className="px-2 pt-1">
-                        <h5 class="card-title">{profileData.name} {profileData.lastName}</h5>
-                        <p class="card-text">@{profileData.username}</p>
+                        <h5 className="card-title">{profileData.name} {profileData.lastName}</h5>
+                        <p className="card-text">@{profileData.username}</p>
                     </div>
                 </div>
                 {/* Details */}
