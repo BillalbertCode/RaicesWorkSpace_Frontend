@@ -15,15 +15,8 @@ import toast from "react-hot-toast"
 import Link from "next/link"
 const ArticleForm = () => {
 
-
     const { token } = useContext(TokenContext)
-    const { toogleRender } = useContext(ArticleContext)
-
-    // Estados del article
-    const [articleData, setArticleData] = useState({
-        title: '',
-        content: ''
-    })
+    const { setArticles } = useContext(ArticleContext)
 
     // Renderizacion de la data del usuario
     const [dataUser, setDataUser] = useState(localStorage.getItem('dataProfile') || { name: 'Loading...', username: 'Loading...' })
@@ -33,6 +26,12 @@ const ArticleForm = () => {
             setDataUser(JSON.parse(localStorage.getItem('dataProfile')))
         }
     }, [localStorage.getItem('dataProfile')])
+
+    // Estados del formulario
+    const [articleData, setArticleData] = useState({
+        title: '',
+        content: ''
+    })
 
     // Validacion requerida de los campos (exclusivo de este componente)
     const validateLocal = () => {
@@ -48,9 +47,30 @@ const ArticleForm = () => {
         return validateErrors
     }
 
+    // Creacion e implementacion de un nuevo article en el contexto
+    const createArticle = () => {
+        // datos para renderizar la lista de articulos
+        // Este formato es el formato esperado por el ArticleCard
+        // le falta solo el id del article que se obtiene en la base de datos
+        // Esto es para Optimizar la vizualizacion de un nuevo article sin necesidad de un fetch
+        const newArticle = {
+            title: articleData.title,
+            content: articleData.content,
+            author: {
+                _id: dataUser._id,
+                name: dataUser.name,
+                lastName: dataUser.lastName,
+                username: dataUser.username
+            },
+            createAt: Date.now()
+        };
+
+        setArticles((prevArticles) => [newArticle, ...prevArticles])
+    }
+
     // Funcion para vaciar el input y renderizar cuando se halla mandado exitosamente el post
     const action = () => {
-        toogleRender()
+        createArticle()
         setArticleData({
             title: '',
             content: ''
@@ -62,14 +82,15 @@ const ArticleForm = () => {
         const info = toast.promise(fetchPostArticle(articleData, token, action),
             {
                 loading: 'Creando Articulo.. ',
-                success:'Articulo Creado',
+                success: 'Articulo Creado',
                 error: 'Problema al crear el articulo',
             }).catch(error => {
                 console.error(error)
                 return error
             })
-            return info
+        return info
     }
+
     // Hook de validacion de campos
     const { validate, formValidation } = useValidateFields(validateLocal, toastFetch)
 
@@ -121,7 +142,7 @@ const ArticleForm = () => {
                 </div>
                 <button type="submit" className="btn btn-outline-secondary">Publicar</button>
             </form>
-            
+
         </div >
     )
 }
