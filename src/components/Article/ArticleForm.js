@@ -22,7 +22,7 @@ import Link from "next/link"
 const ArticleForm = () => {
 
     const { token } = useContext(TokenContext)
-    const { setArticles } = useContext(ArticleContext)
+    const { addArticle } = useContext(ArticleContext)
 
     // Renderizacion de la data del usuario
     const [dataUser, setDataUser] = useState(localStorage.getItem('dataProfile') || { name: 'Loading...', username: 'Loading...' })
@@ -62,7 +62,7 @@ const ArticleForm = () => {
         const newArticle = {
             title: articleData.title,
             content: articleData.content,
-            _id:  Math.random(),
+            _id: Math.random(),
             author: {
                 _id: dataUser._id,
                 name: dataUser.name,
@@ -71,8 +71,7 @@ const ArticleForm = () => {
             },
             createAt: Date.now()
         };
-
-        setArticles((prevArticles) => [newArticle, ...prevArticles])
+        addArticle(newArticle)
     }
 
     // Funcion para vaciar el input y renderizar cuando se halla mandado exitosamente el post

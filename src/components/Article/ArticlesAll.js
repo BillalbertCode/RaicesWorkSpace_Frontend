@@ -11,8 +11,6 @@ import ArticleCard from "./ArticleCard";
 const ArticlesAll = ({ endpoint }) => {
     // Lista de articles del contexto
     const { articles, setArticles } = useContext(ArticleContext)
-    const [showArticles, setShowArticles] = useState([])
-    const articlesFake = null
     // Manejo de estados
     const [loading, setloading] = useState(true);
     const [estateErrors, setEstateErrors] = useState(false)
@@ -34,7 +32,6 @@ const ArticlesAll = ({ endpoint }) => {
 
                 const data = await response.json()
                 setArticles(data)
-                setShowArticles([])
                 setloading(false)
             } catch (error) {
                 console.error('error:', error)
@@ -43,23 +40,6 @@ const ArticlesAll = ({ endpoint }) => {
         })();
 
     }, []);
-
-    useEffect(() => {
-        if (articles !== null) {
-            let index = 0;
-            const showArticle = () => {
-                if (index < articles.length) {
-                    const article = articles[index];
-                    if (article !== undefined) {
-                        setShowArticles((prevArticles) => [...prevArticles, article]);
-                    }
-                    index++;
-                    setTimeout(showArticle, 350); // 1 segundo de delay
-                }
-            };
-            showArticle();
-        }
-    }, [articles]);
 
     if (articles === null) {
         return (
@@ -83,9 +63,9 @@ const ArticlesAll = ({ endpoint }) => {
                 ? (<p>loading</p>)
                 // Mapeo de los articulos
                 : (<ul className="d-flex flex-column align-items-center p-0 gap-4">{
-                    showArticles.map((article) => {
+                    articles.map((article, index) => {
                         return (
-                            <ArticleCard key={article._id} article={article} > </ArticleCard>
+                            <ArticleCard style={{ '--index': index}} key={article._id} article={article} > </ArticleCard>
                         )
                     })
                 }</ul>)

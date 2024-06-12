@@ -1,24 +1,36 @@
 // Este Componente muestra la informacion del articulo
-import { useState } from "react";
-import ArticleConfig from "./ArticleConfig/ArticleConfig";
-import formateDate from "@/utils/formateDate"; //Convierte la hora
+// Tambien Manipula el estado del article
+import { useContext, useState } from "react";
 import Link from "next/link";
+// context
+import { ArticleContext } from "@/contexts/ArticleContext";
+// componentes
+import ArticleConfig from "./ArticleConfig/ArticleConfig";
+// Funciones
+import formateDate from "@/utils/formateDate"; //Convierte la hora
+// Styles
 import stylesArticle from "@/styles/article.module.css"
 /**
  * @param {object} article - objeto de articulo con todos sus datos
  */
 // Acepta un objeto article como prop
-const ArticleCard = ({ article }) => {
-
+const ArticleCard = ({ style, article }) => {
+    // context para los estados del article
+    const { articlesChanges } = useContext(ArticleContext)
     // Usado en el diseño responsivo para activar el filtro con una clase
     // imgCardContent
     const [imgFilter, setImageFilter] = useState(false)
-    const toogleImageFilter = () =>{
+    const [opacity, setOpacity] = useState(0);
+
+    const showArticle = () => {
+        setOpacity(1);
+    };
+    const toogleImageFilter = () => {
         setImageFilter(!imgFilter)
     }
 
     return (
-        <div className={`card overflow-hidden ${stylesArticle.containerCard}`} >
+        <div style={{...style, opacity }} onAnimationStart={showArticle} className={`card overflow-hidden ${stylesArticle.containerCard} ${articlesChanges[article._id] === 'added' ? stylesArticle.stateCreate : articlesChanges[article._id] === 'removed' ? stylesArticle.stateRemove : stylesArticle.stateProccess}`} >
             <div className={`card-header p-0 ps-2 ${stylesArticle.bgMetallicFormArticle}`}>
                 <div className=" d-flex p-2 " >
                     <Link href="/profile">
@@ -31,7 +43,7 @@ const ArticleCard = ({ article }) => {
                 </div>
             </div>
             <div className="row g-0" >
-                <div className={`col-md-4 d-flex ${stylesArticle.imgCardContent} ${imgFilter && stylesArticle['active'] } `} >
+                <div className={`col-md-4 d-flex ${stylesArticle.imgCardContent} ${imgFilter && stylesArticle['active']} `} >
                     <img className="object-fit-cover img-fluid" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain" title={article.title || article.content} />
                 </div>
                 <div className="col-md-8 ">

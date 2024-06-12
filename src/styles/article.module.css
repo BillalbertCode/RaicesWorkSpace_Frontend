@@ -5,57 +5,77 @@
 .containerCard {
     width: 60%;
     max-width: 800px !important;
-    animation: aparicion 350ms ease;
 }
-@keyframes aparicion {
-    0%{
-        transform: translateX(-50%);
-    }
-    100%{
-        transform: translateX(0);
-    }
+
+/* Estados del article */
+.stateProccess {
+    animation: proccess 350ms ease;
+    animation-delay: calc(0.5s * var(--index));
 }
-/* Posible create */
-/* @keyframes aparicion {
+
+.stateCreate {
+    animation: newArticle 350ms ease;
+}
+
+.stateRemove {
+    animation: newArticle 200ms ease reverse;
+}
+
+@keyframes proccess {
     0% {
+        transform: translateX(-50%);
         opacity: 0;
-        width:5%;
-        height: 20px;
-        border-radius:50% ;
     }
-    100%{
-        width:60%;
-        height: 100%;
-        border-radius:0 ;
+
+    100% {
+        transform: translateX(0);
         opacity: 1;
     }
-} */
+}
+
+
+@keyframes newArticle {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+        border-radius: 100%;
+    }
+
+    100% {
+        transform: scale(1);
+        border-radius: 0;
+        opacity: 1;
+    }
+}
 
 @media (max-width: 425px) {
     .containerCard {
         width: 100%;
         position: relative;
     }
-    .bgMetallicFormArticle{
+
+    .bgMetallicFormArticle {
         background: #ffffff00;
     }
+
     .imgCardContent {
         justify-content: center;
         width: 100%;
-        height: 100% ;
+        height: 100%;
         position: absolute;
         filter: opacity(15%) blur(3px);
         transition: filter ease 0.5s;
     }
-    .imgCardContent.active{
+
+    .imgCardContent.active {
         filter: opacity(70%) blur(0px) !important;
     }
-    .imgArticle svg{
-        width:25px !important;
+
+    .imgArticle svg {
+        width: 25px !important;
     }
 
-    .imgCardContent img{
+    .imgCardContent img {
         width: 100%;
     }
-
 }
