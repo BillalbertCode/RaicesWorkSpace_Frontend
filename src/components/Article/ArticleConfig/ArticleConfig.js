@@ -14,16 +14,16 @@ const ArticleConfig = ({ article }) => {
     //Contexto de token para saber si el usuario tiene los privilegios necesarios
     const { loginStatus, tokenId, token } = useContext(TokenContext);
     //Contexto del articulo para renderizarlo
-    const { setArticles } = useContext(ArticleContext)
+    const { deleteArticle } = useContext(ArticleContext)
 
     // Funcion para eliminar articulo del contexto (visualmente) 
-    const deleteArticle = () => {
-        setArticles((prevArticles => prevArticles.filter((articles) => articles._id !== article._id )))
+    const articleDelete = () => {
+        deleteArticle(article)
     }
     
     // Notificacion status + solicitud delete
     const toastFetchDelete = () => {
-        const info = toast.promise(fetchDeleteArticle(article._id, token, deleteArticle),
+        const info = toast.promise(fetchDeleteArticle(article._id, token, articleDelete),
             {
                 loading: 'Eliminando articulo...',
                 success: 'Articulo eliminado con exito',

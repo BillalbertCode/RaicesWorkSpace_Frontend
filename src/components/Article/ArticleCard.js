@@ -20,11 +20,13 @@ const ArticleCard = ({ style, article }) => {
     // Usado en el diseño responsivo para activar el filtro con una clase
     // imgCardContent
     const [imgFilter, setImageFilter] = useState(false)
+    
+    //Mostrar article  
     const [opacity, setOpacity] = useState(0);
-
     const showArticle = () => {
         setOpacity(1);
     };
+
     const toogleImageFilter = () => {
         setImageFilter(!imgFilter)
     }
