@@ -11,7 +11,11 @@ export const ArticleProvider = ({ children }) => {
 
     // Funcion para agregar articulos
     const addArticle = (article) => {
-        setArticles((prevArticles) => [article, ...prevArticles])
+        if(articles !== null){
+            setArticles((prevArticles) => [article, ...prevArticles])
+        }else{
+            setArticles([article])
+        }
         setArticlesChanges((prevChanges) => ({ ...prevChanges, [article._id]: 'added' }))
     }
 
