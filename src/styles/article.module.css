@@ -3,9 +3,33 @@
 }
 
 .containerCard {
-    width: 70%;
+    width: 60%;
     max-width: 800px !important;
+    animation: aparicion 350ms ease;
 }
+@keyframes aparicion {
+    0%{
+        transform: translateX(-50%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+/* Posible create */
+/* @keyframes aparicion {
+    0% {
+        opacity: 0;
+        width:5%;
+        height: 20px;
+        border-radius:50% ;
+    }
+    100%{
+        width:60%;
+        height: 100%;
+        border-radius:0 ;
+        opacity: 1;
+    }
+} */
 
 @media (max-width: 425px) {
     .containerCard {

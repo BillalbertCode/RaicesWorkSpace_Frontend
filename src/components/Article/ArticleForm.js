@@ -62,6 +62,7 @@ const ArticleForm = () => {
         const newArticle = {
             title: articleData.title,
             content: articleData.content,
+            _id:  Math.random(),
             author: {
                 _id: dataUser._id,
                 name: dataUser.name,

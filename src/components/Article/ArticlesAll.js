@@ -2,7 +2,7 @@
 // recibe como promp el endpoint y renderiza cada articulo que llega del endpoint
 // los endpoints esperados son: los articulos de un usuario o todos los articulos general
 
-import {useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "@/contexts/ArticleContext";
 import ArticleCard from "./ArticleCard";
 /**
@@ -11,6 +11,8 @@ import ArticleCard from "./ArticleCard";
 const ArticlesAll = ({ endpoint }) => {
     // Lista de articles del contexto
     const { articles, setArticles } = useContext(ArticleContext)
+    const [showArticles, setShowArticles] = useState([])
+    const articlesFake = null
     // Manejo de estados
     const [loading, setloading] = useState(true);
     const [estateErrors, setEstateErrors] = useState(false)
@@ -32,8 +34,8 @@ const ArticlesAll = ({ endpoint }) => {
 
                 const data = await response.json()
                 setArticles(data)
+                setShowArticles([])
                 setloading(false)
-
             } catch (error) {
                 console.error('error:', error)
                 setEstateErrors(true)
@@ -41,6 +43,23 @@ const ArticlesAll = ({ endpoint }) => {
         })();
 
     }, []);
+
+    useEffect(() => {
+        if (articles !== null) {
+            let index = 0;
+            const showArticle = () => {
+                if (index < articles.length) {
+                    const article = articles[index];
+                    if (article !== undefined) {
+                        setShowArticles((prevArticles) => [...prevArticles, article]);
+                    }
+                    index++;
+                    setTimeout(showArticle, 350); // 1 segundo de delay
+                }
+            };
+            showArticle();
+        }
+    }, [articles]);
 
     if (articles === null) {
         return (
@@ -61,12 +80,12 @@ const ArticlesAll = ({ endpoint }) => {
     return (
         <div className="container-fluid text-center mt-5">
             {loading
-                ? ( <p>loading</p>)
+                ? (<p>loading</p>)
                 // Mapeo de los articulos
                 : (<ul className="d-flex flex-column align-items-center p-0 gap-4">{
-                    articles.map((article) => {
+                    showArticles.map((article) => {
                         return (
-                            <ArticleCard key={article._id} article={article}> </ArticleCard>
+                            <ArticleCard key={article._id} article={article} > </ArticleCard>
                         )
                     })
                 }</ul>)
