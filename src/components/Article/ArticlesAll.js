@@ -92,7 +92,7 @@ const ArticlesAll = ({ endpoint }) => {
                 }</ul>)
             }
             {morePage && !loading && (
-                <button className="btn btn-outline-secondary" onClick={loadMoreArticles}>
+                <button className="mb-4 btn btn-outline-secondary" onClick={loadMoreArticles}>
                     Load More...
                 </button>
             )}

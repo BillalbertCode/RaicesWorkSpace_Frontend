@@ -67,7 +67,8 @@ const ArticleForm = () => {
                 _id: dataUser._id,
                 name: dataUser.name,
                 lastName: dataUser.lastName,
-                username: dataUser.username
+                username: dataUser.username,
+                profileIconUrl: dataUser.profileIconUrl
             },
             createAt: Date.now()
         };
@@ -108,7 +109,7 @@ const ArticleForm = () => {
         <div className={`container-sm m-4 ${inputStyle.containerFormArticle}`}>
             <div className=" d-flex " >
                 <Link href="/profile">
-                    <img className="iconLink profileIcon" src="https://th.bing.com/th/id/OIG1.qgdQ.k4SM9tOiXSWI2Jw?w=1024&h=1024&rs=1&pid=ImgDetMain"></img>
+                    <img className="iconLink profileIcon" src={dataUser.profileIconUrl || "/images/banner1.jfif"}></img>
                 </Link>
                 <Link className=" mx-3 link-dark link-offset-2 link-underline link-underline-opacity-0" href="/profile">
                     <p className="h6 pt-2">{dataUser.name}</p>

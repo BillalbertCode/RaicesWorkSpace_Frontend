@@ -8,6 +8,7 @@ import { requireAge } from "@/utils/requireAge";
 import { useValidateFields } from "@/utils/hooks/useValidateFields";
 import { useContext } from "react";
 import { TokenContext } from "@/contexts/TokenContext";
+import Image from "next/image";
 
 const RegisterForm = () => {
     const { loginInit, loginStatus } = useContext(TokenContext)
@@ -20,8 +21,30 @@ const RegisterForm = () => {
         lastName: '',
         password: '',
         birthDate: '',
-        sex: ''
+        sex: '',
+        profileIconUrl: ''
     })
+    const iconsUrl = [
+        { id: 1, name: 'icon1', url: "/images/icons/icon1.jpg" },
+        { id: 2, name: 'icon2', url: "/images/icons/icon2.jpg" },
+        { id: 3, name: 'icon3', url: "/images/icons/icon3.jpg" },
+        { id: 4, name: 'icon4', url: "/images/icons/icon4.jpg" },
+        { id: 5, name: 'icon5', url: "/images/icons/icon5.jpg" },
+        { id: 6, name: 'icon6', url: "/images/icons/icon6.jpg" },
+        { id: 7, name: 'icon7', url: "/images/icons/icon7.jpg" },
+        { id: 8, name: 'icon8', url: "/images/icons/icon8.jpg" },
+        { id: 9, name: 'icon9', url: "/images/icons/icon9.jpg" },
+        { id: 10, name: 'icon10', url: "/images/icons/icon10.jpg" },
+        { id: 11, name: 'icon11', url: "/images/icons/icon11.jpg" },
+        { id: 12, name: 'icon12', url: "/images/icons/icon12.jpg" }
+    ]
+    const [activeIcon, setActiveIcon] = useState(null);
+
+    const handleIconClick = (icon) => {
+        setActiveIcon(icon.id);
+        setUserData((prevUserData) => ({ ...prevUserData, profileIconUrl: icon.url }));
+    };
+
 
     // Este control solo habilita el boton de enviar al aceptar los terminos y condiciones
     const [acceptTerminos, setAcceptTerminos] = useState(false)
@@ -40,7 +63,8 @@ const RegisterForm = () => {
             lastName: validateFieldText(userData, 'lastName', 1, 32),
             // Validacion de la edad sea mayor a 12 años
             birthDate: userData.birthDate ? requireAge(userData.birthDate, 12) : 'Coloque su fecha de Nacimiento',
-            sex: userData.sex.length != 0 ? 'valid' : 'Elija alguna Opcion'
+            sex: userData.sex.length != 0 ? 'valid' : 'Elija alguna Opcion',
+            profileIconUrl: userData.profileIconUrl.length != 0 ? 'valid' : 'Elija alguna Opcion'
         }
 
         return validateErrors
@@ -278,6 +302,25 @@ const RegisterForm = () => {
                                             ? <div className="valid-feedback">Perfecto! </div>
                                             : formValidation.sex && <div className="invalid-feedback">{formValidation.sex}</div>}
 
+                                    </div>
+                                    {/* Icons */}
+                                    <div className='text-center mb-3'>
+                                        <p>Elije un Icono de Perfil</p>
+                                        {formValidation.profileIconUrl === 'valid'
+                                            ? <div className="text-success">Buen icono! </div>
+                                            : formValidation.profileIconUrl && <div className="text-danger">{formValidation.profileIconUrl}</div>}
+                                        {iconsUrl.map((icon, index) => (
+                                            <Image
+                                                key={index}
+                                                className={`col m-1 rounded-circle iconLink ${activeIcon === icon.id ? 'active border border-primary' : ''}`}
+                                                style={{ width: '80px ', height: '80px ' }}
+                                                src={icon.url}
+                                                alt={icon.name}
+                                                width={100}
+                                                height={100}
+                                                onClick={() => handleIconClick(icon)}
+                                            />
+                                        ))}
                                     </div>
 
                                     {/*  Checkbox de aceptar los terminos, controla el boton de disable*/}
