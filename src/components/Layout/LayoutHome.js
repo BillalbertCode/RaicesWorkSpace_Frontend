@@ -1,12 +1,13 @@
 // Layout de inicio modo visitante
 import LoginForm from "../User/Forms/LoginForm";
 import stylesLayoutHome from "@/styles/layoutHome.module.css"
+import Image from "next/image";
 const LayoutHome = () => {
     return (
         <div className="container my-3">
             <div className="row">
                 <aside className="col-md-5 align-items-center justify-content-center">  
-                    <img className={`${stylesLayoutHome.asideImg} border rounded-pill img-fluid`} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Image" />
+                    <Image sizes="width: 100%" width={100} height={100}   alt="Raices Banner" className={`${stylesLayoutHome.asideImg} border rounded-pill img-fluid w-100`} src="/images/banner2.jfif" />
 
                     <div className=" d-flex justify-content-center text-center m-3 gap-5">
                         <div title="Repositorio FrontEnd" className="flex-column">

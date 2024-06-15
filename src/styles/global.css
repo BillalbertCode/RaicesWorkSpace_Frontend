@@ -52,7 +52,21 @@
     width: 25px !important;
     height: 25px !important;
 }
+/* Navbar Hay que cambiar despues */
+/* EL error que presenta es que no puedo comvertirlo a display flex */
+/* Esto es por que usamos el navbar de bootstrap */
+.navbar-collapse.collapse.show{
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.navbar-collapse.collapse.show div{
 
+    width: auto !important;
+    margin-left: 0;
+    margin-right: 2px;
+}
 /* Profile small */
 .profileIcon{
     border:solid #000 2px ;

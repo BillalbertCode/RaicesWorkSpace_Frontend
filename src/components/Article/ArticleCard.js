@@ -2,6 +2,7 @@
 // Tambien Manipula el estado del article
 import { useContext, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 // context
 import { ArticleContext } from "@/contexts/ArticleContext";
 // componentes
@@ -34,8 +35,8 @@ const ArticleCard = ({ style, article }) => {
     return (
         <div className="container-fluid d-flex flex-column justify-content-center align-items-center position-relative">
             {opacity === 0 && (
-                <div class="spinner-border text-primary position-absolute top-50" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                <div className="spinner-border text-primary position-absolute top-50" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
             )}
             <div
@@ -50,7 +51,7 @@ const ArticleCard = ({ style, article }) => {
                 <div className={`card-header p-0 ps-2 ${stylesArticle.bgMetallicFormArticle}`}>
                     <div className=" d-flex p-2 " >
                         <Link href="/profile">
-                            <img className="iconLink profileIcon " src={article.author.profileIconUrl || "/images/banner1.jfif"}></img>
+                            <Image width={60} height={60} className="iconLink profileIcon " src={article.author.profileIconUrl || "/images/banner1.jfif"}/>
                         </Link>
                         <Link className=" mx-3 text-start link-dark link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
                             <p className="h6 pt-2">{article.author.name} {article.author.lastName} </p>
@@ -75,7 +76,7 @@ const ArticleCard = ({ style, article }) => {
                             <Link className=" link-dark link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                    <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                                 </svg>
                                 <small className="text-body-secondary ms-1">
                                     {`@${article.author.username} `}

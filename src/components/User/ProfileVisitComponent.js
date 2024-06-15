@@ -1,5 +1,6 @@
 //Componente que muestra los datos del usuario
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 // Estilos
 import stylesProfile from "@/styles/profile.module.css"
@@ -13,12 +14,12 @@ const ProfileVisitComponent = ({ profileData }) => {
     return (
         <div className={`text-bg-dark ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
             <div className={stylesProfile.profileBackroundContainer}>
-                <img className={stylesProfile.profileBackground} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
+                <Image className={stylesProfile.profileBackground} src="/images/banner2/jfif" alt="Profile" />
             </div>
             <div className={`m-3 ${stylesProfile.profileContent}`}>
                 <div className="d-flex">
                     <Link href="/profile">
-                        <img style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src={profileData.profileIconUrl || "/images/banner1.jfif"}></img>
+                        <Image style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src={profileData.profileIconUrl || "/images/banner1.jfif"}/>
                     </Link>
                     <div className="px-2 pt-1">
                         <h5 className="card-title">{profileData.name} {profileData.lastName}</h5>

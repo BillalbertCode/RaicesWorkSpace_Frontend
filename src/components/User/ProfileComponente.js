@@ -1,5 +1,6 @@
 //Componente que muestra los datos del usuario
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 // Funciones
 import { handleChange } from "@/utils/handleChange";
@@ -68,7 +69,7 @@ const ProfileComponente = ({ token, profileData }) => {
                     <button className="btn btn-sm btn-secondary mx-1" onClick={() => router.push('../')}>
                         Reset
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                            <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
                             <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
                         </svg>
                     </button>
@@ -110,12 +111,12 @@ const ProfileComponente = ({ token, profileData }) => {
     return (
         <div className={` text-bg-dark ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
             <div className={stylesProfile.profileBackroundContainer}>
-                <img className={stylesProfile.profileBackground} src="https://th.bing.com/th/id/OIG1.glJIctD5DwA61dYaMCDn?pid=ImgGn" alt="Profile" />
+                <Image className={stylesProfile.profileBackground} src="/images/banner2.jfif" alt="Profile" />
             </div>
             <div className={`m-3 ${stylesProfile.profileContent}`}>
                 <div className="d-flex">
                     <Link href="/profile">
-                        <img style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src={profileData.profileIconUrl || "/images/banner1.jfif"}></img>
+                        <Image width={60} height={60} style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src={profileData.profileIconUrl || "/images/banner1.jfif"}/>
                     </Link>
                     <div className="px-2 pt-1">
                         <h5 className="card-title">{profileData.name} {profileData.lastName}</h5>

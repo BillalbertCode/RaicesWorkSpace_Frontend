@@ -6,6 +6,9 @@
 //  Renderizacion del article en la lista
 
 import { useContext, useState, useEffect } from "react"
+import Link from "next/link"
+import Image from "next/image"
+// Contexts
 import { TokenContext } from "@/contexts/TokenContext"
 import { ArticleContext } from "@/contexts/ArticleContext"
 //Controladores del formulario
@@ -18,7 +21,6 @@ import { validateFieldText } from "@/utils/validateFieldText"
 import inputStyle from "@/styles/inputs.module.css"
 // Libreria de Notificaciones/Toast
 import toast from "react-hot-toast"
-import Link from "next/link"
 const ArticleForm = () => {
 
     const { token } = useContext(TokenContext)
@@ -109,7 +111,7 @@ const ArticleForm = () => {
         <div className={`container-sm m-4 ${inputStyle.containerFormArticle}`}>
             <div className=" d-flex " >
                 <Link href="/profile">
-                    <img className="iconLink profileIcon" src={dataUser.profileIconUrl || "/images/banner1.jfif"}></img>
+                    <Image width={60} height={60} className="iconLink profileIcon" src={dataUser.profileIconUrl || "/images/banner1.jfif"}/>
                 </Link>
                 <Link className=" mx-3 link-dark link-offset-2 link-underline link-underline-opacity-0" href="/profile">
                     <p className="h6 pt-2">{dataUser.name}</p>
