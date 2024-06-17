@@ -7,8 +7,9 @@
  * @param {function} action - Accion si la peticion fue exitosa
  */
 export const fetchDeleteUser = async (token, action) => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
     try {
-        const response = await fetch(`http://localhost:5000/user/profile/`, {
+        const response = await fetch(`${apiUrl}/user/profile/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

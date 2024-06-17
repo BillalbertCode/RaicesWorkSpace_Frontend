@@ -6,8 +6,10 @@
  * @param {function} action - Solo esta accion espera los datos del token para setearlo
  */
 export const fetchLogin = async (dataSend, action) => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
     try {
-        const response = await fetch('http://localhost:5000/user/login', {
+        const response = await fetch(`${apiUrl}/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

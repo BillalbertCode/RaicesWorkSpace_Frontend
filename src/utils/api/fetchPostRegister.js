@@ -7,8 +7,10 @@
  * @param {function} action - Accion luego de enviar la informacion en este caso devuelve tokne 
  */
 export const fetchPostRegister = async (dataSend, action) => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
     try {
-        const response = await fetch(`http://localhost:5000/user/register`, {
+        const response = await fetch(`${apiUrl}/user/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

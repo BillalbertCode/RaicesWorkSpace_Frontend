@@ -5,6 +5,7 @@ import ArticlesAll from "@/components/Article/ArticlesAll";
 import ArticleForm from "@/components/Article/ArticleForm";
 
 const HomePage = () => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
     const { loginStatus, token, closedSession } = useContext(TokenContext)
     const [userData, setUserData] = useState(null)
@@ -12,7 +13,7 @@ const HomePage = () => {
         if (loginStatus) {
             (async () => {
                 try {
-                    const response = await fetch(`http://localhost:5000/user/profile/`, {
+                    const response = await fetch(`${apiUrl}/user/profile/`, {
                         method: 'GET',
                         headers: {
                             Authorization: `${token}`

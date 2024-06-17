@@ -13,6 +13,8 @@ import styleProfile from "@/styles/profile.module.css"
 
 
 const Profile = () => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
     const { token, closedSession } = useContext(TokenContext)
 
     //Datos renderizados del usuario
@@ -26,7 +28,7 @@ const Profile = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await fetch(`http://localhost:5000/user/profile/`, {
+                const response = await fetch(`${apiUrl}/user/profile/`, {
                     method: 'GET',
                     headers: {
                         Authorization: `${token}`

@@ -8,8 +8,10 @@
  * @param {function} action - funciones adicionales que hacer si el put se manda correctamente 
  */
 export const fetchPut = async (dataSend, token, action) => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
     try {
-        const response = await fetch('http://localhost:5000/user/profile', {
+        const response = await fetch(`${apiUrl}/user/profile`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

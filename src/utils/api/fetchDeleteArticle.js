@@ -8,8 +8,10 @@
  * @param {function} action - funcion de respuesta despues de que sea exitosa la peticion 
  */
 export const fetchDeleteArticle = async (articleId, token, action) => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
     try {
-        const response = await fetch(`http://localhost:5000/article/${articleId}`, {
+        const response = await fetch(`${apiUrl}/article/${articleId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

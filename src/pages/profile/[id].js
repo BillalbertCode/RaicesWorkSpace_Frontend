@@ -8,6 +8,7 @@ import styleProfile from "@/styles/profile.module.css"
 const Profile = () => {
     const router = useRouter()
     const { id } = router.query
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
     //Datos renderizados del usuario
     const [userProfile, setUserProfile] = useState(null)
@@ -20,7 +21,7 @@ const Profile = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await fetch(`http://localhost:5000/user/profile/${id}`)
+                const response = await fetch(`${apiUrl}/user/profile/${id}`)
                 if (!response.ok) {
                     if (response.status === 404) {
                         const error = new Error('Usuario no encontrado')

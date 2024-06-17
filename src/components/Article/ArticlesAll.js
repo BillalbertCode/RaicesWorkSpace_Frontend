@@ -9,6 +9,7 @@ import ArticleCard from "./ArticleCard";
  * @param {string} endpoint - endpoint del array de los objetos articles
  */
 const ArticlesAll = ({ endpoint }) => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
     // Lista de articles del contexto
     const { articles, setArticles } = useContext(ArticleContext)
 
@@ -25,7 +26,7 @@ const ArticlesAll = ({ endpoint }) => {
         // Y actualizacion de la lista del contexto
         (async () => {
             try {
-                const response = await fetch(`http://localhost:5000${endpoint}?page=${page}&limit=5`)
+                const response = await fetch(`${apiUrl}${endpoint}?page=${page}&limit=5`)
 
                 if (!response.ok) {
                     // Si no hay mas articles que mostrar en concatenacion
