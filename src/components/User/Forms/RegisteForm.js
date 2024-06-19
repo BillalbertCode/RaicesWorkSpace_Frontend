@@ -25,18 +25,18 @@ const RegisterForm = () => {
         profileIconUrl: ''
     })
     const iconsUrl = [
-        { id: 1, name: 'icon1', url: "/images/icons/icon1.jpg" },
-        { id: 2, name: 'icon2', url: "/images/icons/icon2.jpg" },
-        { id: 3, name: 'icon3', url: "/images/icons/icon3.jpg" },
-        { id: 4, name: 'icon4', url: "/images/icons/icon4.jpg" },
-        { id: 5, name: 'icon5', url: "/images/icons/icon5.jpg" },
-        { id: 6, name: 'icon6', url: "/images/icons/icon6.jpg" },
-        { id: 7, name: 'icon7', url: "/images/icons/icon7.jpg" },
-        { id: 8, name: 'icon8', url: "/images/icons/icon8.jpg" },
-        { id: 9, name: 'icon9', url: "/images/icons/icon9.jpg" },
-        { id: 10, name: 'icon10', url: "/images/icons/icon10.jpg" },
-        { id: 11, name: 'icon11', url: "/images/icons/icon11.jpg" },
-        { id: 12, name: 'icon12', url: "/images/icons/icon12.jpg" }
+        { id: 1, name: 'icono1', url: "/images/icons/icono1.jpg" },
+        { id: 2, name: 'icono2', url: "/images/icons/icono2.jpg" },
+        { id: 3, name: 'icono3', url: "/images/icons/icono3.jpg" },
+        { id: 4, name: 'icono4', url: "/images/icons/icono4.jpg" },
+        { id: 5, name: 'icono5', url: "/images/icons/icono5.jpg" },
+        { id: 6, name: 'icono6', url: "/images/icons/icono6.jpg" },
+        { id: 7, name: 'icono7', url: "/images/icons/icono7.jpg" },
+        { id: 8, name: 'icono8', url: "/images/icons/icono8.jpg" },
+        { id: 9, name: 'icono9', url: "/images/icons/icono9.jpg" },
+        { id: 10, name: 'icono10', url: "/images/icons/icono10.jpg" },
+        { id: 11, name: 'icono11', url: "/images/icons/icono11.jpg" },
+        { id: 12, name: 'icono12', url: "/images/icons/icono12.jpg" }
     ]
     const [activeIcon, setActiveIcon] = useState(null);
 
@@ -81,6 +81,7 @@ const RegisterForm = () => {
 
     return (
         //Peticion de registro
+        // Mewing
         <div className="row justify-content-center ">
             {
                 loginStatus ? <p className="text-white">Usted ya a iniciado sesion, que hace aqui? 😡 </p> :
