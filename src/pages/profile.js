@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import Head from "next/head";
 // Contextos
 import { TokenContext } from "@/contexts/TokenContext";
 // Componentes
@@ -72,6 +73,9 @@ const Profile = () => {
 
     return (
         <main className="d-flex flex-column ">
+            <Head>
+                <title>Raices Perfil</title>
+            </Head>
             <header className={`container mb-3 ${styleProfile.header}`}>
                 <ProfileComponente token={token} profileData={userProfile}></ProfileComponente>
                 <UserDeleteModal token={token} action={() => closedSession()}></UserDeleteModal>

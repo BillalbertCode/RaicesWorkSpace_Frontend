@@ -5,6 +5,7 @@ import ConexionError from "@/components/Layout/ConexionError";
 import ProfileVisitComponent from "@/components/User/ProfileVisitComponent";
 // Styles
 import styleProfile from "@/styles/profile.module.css"
+import Head from "next/head";
 const Profile = () => {
     const router = useRouter()
     const { id } = router.query
@@ -50,6 +51,9 @@ const Profile = () => {
     }
     return (
         <main className="d-flex flex-column">
+            <Head>
+                <title>{userProfile.name} | Profile</title>
+            </Head>
             <header className={`container mb-3 ${styleProfile.header}`}>
                 <ProfileVisitComponent profileData={userProfile}></ProfileVisitComponent>
             </header>

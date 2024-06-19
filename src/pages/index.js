@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Head from "next/head";
 import { TokenContext } from "@/contexts/TokenContext";
 import LayoutHome from "@/components/Layout/LayoutHome";
 import ArticlesAll from "@/components/Article/ArticlesAll";
@@ -44,6 +45,9 @@ const HomePage = () => {
     return (
 
         <main className="d-flex flex-column align-items-center">
+            <Head>
+                <title>Raices Home</title>
+            </Head>
             {loginStatus
                 ? <ArticleForm ></ArticleForm>
                 : <LayoutHome></LayoutHome>}
