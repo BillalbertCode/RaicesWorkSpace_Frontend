@@ -115,5 +115,7 @@
         width: 100% !important;
         padding-left: 12px !important;
     }
-
+    .bgCampos{
+        background: #00000000;
+    }
 }
