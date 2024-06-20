@@ -109,7 +109,7 @@ const ProfileComponente = ({ token, profileData }) => {
     }
     // Hook de validacion de campos
     return (
-        <div className={` text-bg-dark ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
+        <div className={` text-bg-white ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
             <div className={stylesProfile.profileBackroundContainer}>
                 <Image sizes="100%" width={1} height={1} className={`${stylesProfile.profileBackground} w-100`} src="/images/banner2.jfif" alt="Profile" />
             </div>
@@ -180,13 +180,13 @@ const ProfileComponente = ({ token, profileData }) => {
 
                             </EditField>
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Username:</span> @{profileData.username}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}><span className="fw-bold me-2">Username:</span> @{profileData.username}</p>
                             </li>
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Genero:</span> {profileData.sex}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}><span className="fw-bold me-2">Genero:</span> {profileData.sex}</p>
                             </li>
                             <li className="list-group-item p-1 pt-2  text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 text-white border w-50 rounded-pill bg-transparent"> <span className="fw-bold me-2">BirthDate:</span> {profileData.birthDate}</p>
+                                <p className={`p-2 ps-4 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}> <span className="fw-bold me-2">BirthDate:</span> {profileData.birthDate}</p>
                             </li>
 
                         </ul>
@@ -210,7 +210,7 @@ const EditField = ({
     return (
         <li className="list-group-item border-0  text-white bg-transparent">
             <div className="row ">
-                <div className="col border rounded-pill align-items-center input-group">
+                <div className={`col border rounded-pill align-items-center input-group ${stylesProfile.bgCampos}`}>
                     <label className="input-group-text text-white border-0 bg-transparent fw-bold">{label}:</label>
                     {onEdit[fieldName] ?
                         (

@@ -1,14 +1,19 @@
 // Formulario de registro
-import { useState } from "react";
+import { useState, useContext } from "react";
+import Image from "next/image";
+// Context
+import { TokenContext } from "@/contexts/TokenContext";
+// Api && fetch
 import { fetchPostRegister } from "@/utils/api/fetchPostRegister";
+// Hooks
+import { useValidateFields } from "@/utils/hooks/useValidateFields";
+// funciones
 import { handleChange } from "@/utils/handleChange"
 import { verifyPassword } from "@/utils/verifyPassword";
 import { validateFieldText } from "@/utils/validateFieldText";
 import { requireAge } from "@/utils/requireAge";
-import { useValidateFields } from "@/utils/hooks/useValidateFields";
-import { useContext } from "react";
-import { TokenContext } from "@/contexts/TokenContext";
-import Image from "next/image";
+// Estilos
+import styles from "@/styles/register.module.css"
 
 const RegisterForm = () => {
     const { loginInit, loginStatus } = useContext(TokenContext)
@@ -86,7 +91,7 @@ const RegisterForm = () => {
             {
                 loginStatus ? <p className="text-white">Usted ya a iniciado sesion, que hace aqui? 😡 </p> :
                     <div className="col-md-6 mb-5 " >
-                        <div className="card shadow">
+                        <div className={`card ${styles.registerForm}`} >
                             <div className="card-header bg-primary text-light">
                                 <h2>Raices - Registro</h2>
                             </div>

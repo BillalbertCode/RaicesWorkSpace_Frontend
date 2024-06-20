@@ -12,7 +12,7 @@ const Notificacion = ({ title, description }) => {
     const [show, setShow] = useState(true);
 
     return (
-        <ToastContainer className='m-3' position="top-end">
+        <ToastContainer data-bs-theme="dark" className='m-3' position="top-end">
             <Toast onClose={() => setShow(false)} show={show} >
                 <Toast.Header className='bg-metallic text-white '>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-bell" viewBox="0 0 16 16">

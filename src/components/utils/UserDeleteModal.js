@@ -26,7 +26,7 @@ const UserDeleteModal = ({ token, action }) => {
                 </svg>
             </Button>
 
-            <Modal show={show} onHide={handleClose} animation={true}>
+            <Modal data-bs-theme="dark" show={show} onHide={handleClose} animation={true}>
                 <Modal.Header className="bg-danger text-white" closeButton>
                     <Modal.Title   >Eliminacion de usuario</Modal.Title>
                 </Modal.Header>

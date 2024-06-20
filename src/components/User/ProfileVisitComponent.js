@@ -12,7 +12,7 @@ const ProfileVisitComponent = ({ profileData }) => {
     const [details, setDetails] = useState(false)
 
     return (
-        <div className={`text-bg-dark ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
+        <div className={`text-bg-white ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
             <div className={stylesProfile.profileBackroundContainer}>
                 <Image sizes="100%" width={1} height={1} className={`${stylesProfile.profileBackground} w-100`} src="/images/banner2.jfif" alt="Profile" />
 
@@ -43,23 +43,23 @@ const ProfileVisitComponent = ({ profileData }) => {
                         {/* details campos */}
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Nombre:</span> {profileData.name}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}><span className="fw-bold me-2">Nombre:</span> {profileData.name}</p>
                             </li>
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Apellido:</span> {profileData.lastName}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}><span className="fw-bold me-2">Apellido:</span> {profileData.lastName}</p>
                             </li>
 
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Email:</span> {profileData.email}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}><span className="fw-bold me-2">Email:</span> {profileData.email}</p>
                             </li>
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"><span className="fw-bold me-2">Username:</span> @{profileData.username}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}><span className="fw-bold me-2">Username:</span> @{profileData.username}</p>
                             </li>
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent"> <span className="fw-bold me-2">Genero:</span> {profileData.sex}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}> <span className="fw-bold me-2">Genero:</span> {profileData.sex}</p>
                             </li>
                             <li className="list-group-item p-1 pt-2 text-white bg-transparent border-0">
-                                <p className="p-2 ps-4 m-0 text-white border w-50 rounded-pill bg-transparent">  <span className="fw-bold me-2">BirthDate:</span> {profileData.birthDate}</p>
+                                <p className={`p-2 ps-4 m-0 text-white border w-50 rounded-pill ${stylesProfile.bgCampos}`}>  <span className="fw-bold me-2">BirthDate:</span> {profileData.birthDate}</p>
                             </li>
 
                         </ul>

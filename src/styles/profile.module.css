@@ -50,7 +50,10 @@
     text-align: start;
     color: white;
 }
-
+.bgCampos{
+    background: linear-gradient(90deg, rgba(11,2,125,0.8405172413793103) 35%, rgba(114,57,171,0.6939655172413793) 100%);
+    /* background: linear-gradient(90deg, rgba(14,0,182,0.8405172413793103) 0%, rgba(114,57,171,0.6939655172413793) 100%); */
+}
 @media (max-width: 425px) {
     .header {
         width: 100%;

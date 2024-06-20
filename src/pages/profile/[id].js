@@ -50,7 +50,7 @@ const Profile = () => {
         return <div>Loading...</div>;
     }
     return (
-        <main className="d-flex flex-column">
+        <main data-bs-theme="dark" className="d-flex flex-column">
             <Head>
                 <title>{userProfile.name} | Profile</title>
             </Head>

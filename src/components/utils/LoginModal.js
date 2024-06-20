@@ -44,16 +44,16 @@ const LoginModal = () => {
     return (
         <>
             {/* Boton a cambiar pasar solo la funcion al padre para que controle el evento de click con un boton propio  */}
-            <Button variant='outline-dark' onClick={handleShow}>
+            <Button variant='outline-light' onClick={handleShow}>
                 Iniciar Sesion
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header className="bg-dark text-light" closeButton>
+            <Modal data-bs-theme="dark" show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
                     <Modal.Title>Iniciar Sesion</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body className="pt-1">
+                <Modal.Body className=" pt-1">
 
                     <div className="form-text m-2">Puedes Iniciar sesion con Username o el Email</div>
                     <form noValidate onSubmit={handleSubmit}>
@@ -64,7 +64,7 @@ const LoginModal = () => {
                                 <div className="form-floating">
                                     <input type="text"
                                         placeholder="Username"
-                                        className={`form-control text-primary ${(formValidation.username && formValidation.username !== 'valid') && 'is-invalid'}`}
+                                        className={`form-control border-primary text-primary ${(formValidation.username && formValidation.username !== 'valid') && 'is-invalid'}`}
                                         name='username'
                                         id="FloatingUsername"
                                         value={userData.username}
@@ -72,7 +72,7 @@ const LoginModal = () => {
                                         maxLength={32}
                                         onChange={(e) => handleChange(e, userData, setUserData)}
                                     />
-                                    <label className="text-primary-emphasis" htmlFor="FloatingUsername">Username</label>
+                                    <label className="text-primary" htmlFor="FloatingUsername">Username</label>
                                     {(formValidation.username && formValidation.username !== 'valid') && <div className='invalid-feedback mx-2'>{formValidation.username}</div>}
                                 </div>
 
@@ -82,14 +82,14 @@ const LoginModal = () => {
                                 <div className=" form-floating ">
                                     <input type="email"
                                         placeholder="Email"
-                                        className={`form-control ${(formValidation.email && formValidation.email !== 'valid') && 'is-invalid'}`}
+                                        className={`form-control text-light ${(formValidation.email && formValidation.email !== 'valid') && 'is-invalid'}`}
                                         id="FloatingEmail" name="email"
                                         value={userData.email}
                                         minLength={6}
                                         maxLength={254}
                                         onChange={(e) => handleChange(e, userData, setUserData)}
                                     />
-                                    <label htmlFor="FloatingEmail" className="text-secondary">Email </label>
+                                    <label htmlFor="FloatingEmail" className='text-light'>Email </label>
                                     {(formValidation.email && formValidation.email !== 'valid') && <div className='invalid-feedback mx-2'>{formValidation.email}</div>}
 
                                 </div>
@@ -97,11 +97,11 @@ const LoginModal = () => {
 
                         </div>
 
-                        <div className="input-group input-group mb-3">
+                        <div className="input-group input-group mb-3" >
 
                             <input type="password"
                                 placeholder="Contraseña"
-                                className={`form-control  ${(formValidation.password && formValidation.password !== 'valid') && 'is-invalid'}`}
+                                className={`form-control ${(formValidation.password && formValidation.password !== 'valid') && 'is-invalid'}`}
                                 id="password"
                                 name="password"
                                 value={userData.password}

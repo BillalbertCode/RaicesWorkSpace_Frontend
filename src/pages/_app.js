@@ -17,7 +17,9 @@ function MyApp({ Component, pageProps }) {
           toastOptions={{
             duration: 5000,
             style:{
-              border: '2px solid #4ca1da'
+              border: '2px solid #2834e2',
+              background: 'linear-gradient(90deg, rgba(62,58,180,1) 0%, rgba(135,29,253,1) 100%)',
+              color:'#fff'
             },
             
           }}

@@ -44,7 +44,7 @@ const HomePage = () => {
 
     return (
 
-        <main className="d-flex flex-column align-items-center">
+        <main data-bs-theme="dark" className="d-flex flex-column align-items-center">
             <Head>
                 <title>Raices Home</title>
             </Head>

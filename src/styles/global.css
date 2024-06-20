@@ -4,10 +4,19 @@
     --metallic-blue-dark: #295fb1;
 }
 
+body{
+    background: #0e0d0d;
+    color: rgb(228, 228, 228);
+}
+body * a{
+    color: white;
+}
+
 
 .bg-metallic {
     background-color: var(--metallic-blue) !important;
 }
+
 
 .bg-metallic-animation {
     background: linear-gradient(275deg, var(--metallic-blue-dark), #6c95f5, var(--metallic-blue-dark), var(--metallic-blue-dark));

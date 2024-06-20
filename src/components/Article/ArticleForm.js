@@ -113,7 +113,7 @@ const ArticleForm = () => {
                 <Link href="/profile">
                     <Image width={60} height={60} className="iconLink profileIcon" src={dataUser.profileIconUrl || "/images/banner1.jfif"}/>
                 </Link>
-                <Link className=" mx-3 link-dark link-offset-2 link-underline link-underline-opacity-0" href="/profile">
+                <Link className=" mx-3 link-white link-offset-2 link-underline link-underline-opacity-0" href="/profile">
                     <p className="h6 pt-2">{dataUser.name}</p>
                     <p >@{dataUser.username}</p>
                 </Link>

@@ -2,7 +2,8 @@
 
 /* Propiedades del cuadro */
 .bgAnimated {
-    background-color: rgb(105, 200, 255);
+    /* background: linear-gradient(90deg, rgba(45,82,184,1) 24%, rgba(89,51,159,0.44396551724137934) 100%); */
+    background: linear-gradient(90deg, rgba(62,58,180,1) 0%, rgba(135,29,253,1) 100%);
     position: absolute;
     width: 25px;
     height: 25px;
@@ -27,9 +28,9 @@
     transform: translate(-50%, -50%);
     width: 0;
     height: 0;
-    background-color: rgb(12, 166, 255);
+    background-color: rgb(113, 88, 255);
     border-radius: 50%;
-    animation: explode 0.15s ease-in-out;
+    animation: explode 0.2s ease-in-out;
 }
 
 /* Explosion del cuadro Animacion */
@@ -43,7 +44,7 @@
     100% {
         width: 100px;
         height: 100px;
-        opacity: 0;
+        opacity: 0.8;
     }
 }
 

@@ -72,7 +72,7 @@ const Profile = () => {
     }
 
     return (
-        <main className="d-flex flex-column ">
+        <main data-bs-theme="dark" className="d-flex flex-column ">
             <Head>
                 <title>Raices Perfil</title>
             </Head>

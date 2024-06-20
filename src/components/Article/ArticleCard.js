@@ -53,7 +53,7 @@ const ArticleCard = ({ style, article }) => {
                         <Link href="/profile">
                             <Image width={60} height={60} className="iconLink profileIcon " src={article.author.profileIconUrl || "/images/banner1.jfif"}/>
                         </Link>
-                        <Link className=" mx-3 text-start link-dark link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
+                        <Link className=" mx-3 text-start link-white link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
                             <p className="h6 pt-2">{article.author.name} {article.author.lastName} </p>
                             <p className="text-secondary m-0" >@{article.author.username}</p>
                         </Link>
@@ -73,7 +73,7 @@ const ArticleCard = ({ style, article }) => {
                             <h5 className="card-title mt-1 display-6">{article.title || <small className="text-secondary">Sin Titulo</small>}</h5>
                             <p className="card-text">{article.content || <small className="text-secondary">Sin descripcion..</small>}</p>
 
-                            <Link className=" link-dark link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
+                            <Link className=" link-white link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                     <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
