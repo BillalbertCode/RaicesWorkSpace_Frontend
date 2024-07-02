@@ -22,10 +22,8 @@ export const fetchPostRegister = async (dataSend, action) => {
             return (data.error)
         }
 
-        console.log('registro exitoso')
         //pasarle el token e iniciar sesion
         action(data)
-        console.log('datos enviados', dataSend)
     } catch (error) {
         console.error(error)
     }

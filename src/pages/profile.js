@@ -43,7 +43,6 @@ const Profile = () => {
                         throw error
                     }
                 }
-                console.log(token)
                 const profileData = await response.json();
                 setUserProfile(profileData)
                 setErrorController({

@@ -29,7 +29,6 @@ const HomePage = () => {
                             throw error
                         }
                     }
-                    console.log(token)
                     const profileData = await response.json();
                     // Guardamos la informacion del usuario para usarla luego
                     setUserData(profileData)

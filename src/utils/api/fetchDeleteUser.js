@@ -19,7 +19,6 @@ export const fetchDeleteUser = async (token, action) => {
         if (!response.ok) {
             throw new Error('eliminacion fallida')
         }
-        console.log('Usuario Eliminado')
         if (action) {
             action()
         }

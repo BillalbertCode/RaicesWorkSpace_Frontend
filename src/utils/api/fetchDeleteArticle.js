@@ -25,7 +25,6 @@ export const fetchDeleteArticle = async (articleId, token, action) => {
 
             throw error.message
         }
-        console.log('Eliminacion del Articulo exitosa')
         // Accion esperada del articulo
         if (action) {
             action()

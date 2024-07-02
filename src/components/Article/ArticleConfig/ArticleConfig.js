@@ -29,7 +29,7 @@ const ArticleConfig = ({ article }) => {
                 success: 'Articulo eliminado con exito',
                 error: 'Error al tratar de eliminar el articulo',
             }).catch(error => {
-                console.log(error)
+                console.error(error)
                 return error
             })
         return info
