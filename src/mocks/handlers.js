@@ -64,10 +64,16 @@ export const handlers = [
     return HttpResponse.json(paginatedArticles);
   }),
 
-  // 5. Simulación de Login
-  http.post(`${API_URL}/login`, async () => {
+  // 5. Simulación de Login (endpoint real: /user/login)
+  http.post(`${API_URL}/user/login`, async ({ request }) => {
+    const body = await request.json();
+    console.log('Login mock interceptado para:', body.email);
+    
+    // Devolvemos el objeto que TokenContext.js espera para loginInit
     return HttpResponse.json({
-      token: "mock-token-12345",
+      login: true,
+      id: "user-1",
+      token: "mock-jwt-token-raices-workspace-12345",
       user: MOCK_USERS["user-1"]
     });
   }),
