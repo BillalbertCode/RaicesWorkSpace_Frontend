@@ -111,7 +111,7 @@ const ArticleForm = () => {
         <div className={`container-sm m-4 ${inputStyle.containerFormArticle}`}>
             <div className=" d-flex " >
                 <Link href="/profile">
-                    <Image width={60} height={60} className="iconLink profileIcon" src={dataUser.profileIconUrl || "/images/banner1.jfif"}/>
+                    <Image width={60} height={60} className="iconLink profileIcon" src={dataUser.profileIconUrl || "/images/banner1.webp"}/>
                 </Link>
                 <Link className=" mx-3 link-white link-offset-2 link-underline link-underline-opacity-0" href="/profile">
                     <p className="h6 pt-2">{dataUser.name}</p>

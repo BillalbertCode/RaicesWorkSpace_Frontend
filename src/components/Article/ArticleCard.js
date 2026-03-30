@@ -51,7 +51,7 @@ const ArticleCard = ({ style, article }) => {
                 <div className={`card-header p-0 ps-2 ${stylesArticle.bgMetallicFormArticle}`}>
                     <div className=" d-flex p-2 " >
                         <Link href="/profile">
-                            <Image width={60} height={60} className="iconLink profileIcon " src={article.author.profileIconUrl || "/images/banner1.jfif"}/>
+                            <Image width={60} height={60} className="iconLink profileIcon " src={article.author.profileIconUrl || "/images/banner1.webp"}/>
                         </Link>
                         <Link className=" mx-3 text-start link-white link-offset-2 link-underline link-underline-opacity-0" href={`/profile/${article.author._id}`}>
                             <p className="h6 pt-2">{article.author.name} {article.author.lastName} </p>
@@ -61,7 +61,7 @@ const ArticleCard = ({ style, article }) => {
                 </div>
                 <div className="row g-0" >
                     <div className={`col-md-4 d-flex ${stylesArticle.imgCardContent} ${imgFilter && stylesArticle['active']} `} >
-                        <img className="object-fit-cover img-fluid" src="/images/banner1.jfif" title={article.title || article.content} />
+                        <img className="object-fit-cover img-fluid" src="/images/banner1.webp" title={article.title || article.content} />
                     </div>
                     <div className="col-md-8 ">
                         <div className="card-body h-100 d-flex flex-column justify-content-between position-relative ">

@@ -4,17 +4,41 @@ import { TokenProvider } from '@/contexts/TokenContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/global.css'
 import { Toaster } from "react-hot-toast";
-import { useEffect } from 'react';
-
-// Carga asíncrona del worker para no bloquear el bundle principal
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-    const { worker } = require('../mocks/browser');
-    worker.start({
-        onUnhandledRequest: 'bypass', // Permite que otras peticiones pasen
-    });
-}
+import { useEffect, useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
+  const [mockingReady, setMockingReady] = useState(false);
+
+  useEffect(() => {
+    async function initMocks() {
+      // Solo en el navegador
+      if (typeof window !== 'undefined') {
+        // Importación dinámica para evitar errores en el servidor durante el build
+        const { worker } = await import('../mocks/browser');
+        await worker.start({
+          onUnhandledRequest: 'bypass',
+          serviceWorker: {
+            url: '/mockServiceWorker.js',
+          },
+        });
+        setMockingReady(true);
+      }
+    }
+    
+    initMocks();
+  }, []);
+
+  // No renderizamos la app hasta que MSW esté listo para interceptar
+  if (!mockingReady) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100 bg-dark text-primary">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Iniciando Demo...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <TokenProvider>
       <ArticleProvider>
@@ -30,7 +54,6 @@ function MyApp({ Component, pageProps }) {
               background: 'linear-gradient(90deg, rgba(62,58,180,1) 0%, rgba(135,29,253,1) 100%)',
               color:'#fff'
             },
-            
           }}
         />
       </ArticleProvider>

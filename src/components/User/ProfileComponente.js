@@ -111,12 +111,12 @@ const ProfileComponente = ({ token, profileData }) => {
     return (
         <div className={` text-bg-white ${stylesProfile.cardProfileContainer} ${details && stylesProfile['active']}`}>
             <div className={stylesProfile.profileBackroundContainer}>
-                <Image sizes="100%" width={1} height={1} className={`${stylesProfile.profileBackground} w-100`} src="/images/banner2.jfif" alt="Profile" />
+                <Image sizes="100%" width={1} height={1} className={`${stylesProfile.profileBackground} w-100`} src="/images/banner2.webp" alt="Profile" />
             </div>
             <div className={`m-3 ${stylesProfile.profileContent}`}>
                 <div className="d-flex">
                     <Link href="/profile">
-                        <Image width={60} height={60} style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src={profileData.profileIconUrl || "/images/banner1.jfif"}/>
+                        <Image width={60} height={60} style={{ width: "70px", height: "auto" }} className="iconLink profileIcon" src={profileData.profileIconUrl || "/images/banner1.webp"}/>
                     </Link>
                     <div className="px-2 pt-1">
                         <h5 className="card-title">{profileData.name} {profileData.lastName}</h5>
