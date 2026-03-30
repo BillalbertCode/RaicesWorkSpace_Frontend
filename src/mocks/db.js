@@ -7,7 +7,7 @@ export const MOCK_USERS = {
         lastName: "Admin",
         username: "raices_oficial",
         profileIconUrl: "/images/icons/icono1.jpg",
-        bio: "Administrador de la plataforma RaicesWorkSpace. Gestionando el contenido y la comunidad."
+        bio: "Administrador de la plataforma RaicesWorkSpace. Gestionando el contenido y la comunidad. Apasionado por el código limpio y la arquitectura robusta."
     },
     "user-2": {
         _id: "user-2",
@@ -15,7 +15,7 @@ export const MOCK_USERS = {
         lastName: "García",
         username: "ana_dev",
         profileIconUrl: "/images/icons/icono5.jpg",
-        bio: "Fullstack Developer apasionada por React y Node.js. Siempre aprendiendo algo nuevo."
+        bio: "Fullstack Developer apasionada por React y Node.js. Siempre aprendiendo algo nuevo. Me encanta compartir mis conocimientos en el blog."
     },
     "user-3": {
         _id: "user-3",
@@ -23,16 +23,16 @@ export const MOCK_USERS = {
         lastName: "Sánchez",
         username: "csanchez",
         profileIconUrl: "/images/icons/icono8.jpg",
-        bio: "Explorador de nuevas tecnologías y amante del café. Escribo sobre arquitectura y clean code."
+        bio: "Explorador de nuevas tecnologías y amante del café. Escribo sobre arquitectura y clean code. Especialista en optimización de rendimiento."
     }
 };
 
-// 8 Artículos vinculados a los usuarios anteriores
+// 13 Artículos vinculados a los usuarios anteriores para demostrar paginación (5 + 5 + 3)
 export const MOCK_ARTICLES = [
     {
         _id: "art-1",
         title: "Arquitectura Resiliente en Next.js",
-        content: "Este artículo es una demostración de cómo el frontend puede seguir funcionando incluso cuando los servicios de backend están en mantenimiento o pausados por límites de crédito.",
+        content: "Este artículo es una demostración de cómo el frontend puede seguir funcionando incluso cuando los servicios de backend están en mantenimiento.",
         createAt: "2024-03-25T10:00:00.000Z",
         author: MOCK_USERS["user-1"]
     },
@@ -46,7 +46,7 @@ export const MOCK_ARTICLES = [
     {
         _id: "art-3",
         title: "El Futuro del Desarrollo Web",
-        content: "¿Qué nos depara el 2024? Server Components, Edge Computing y el fin de los frameworks tradicionales. Analizamos las tendencias más calientes.",
+        content: "¿Qué nos depara el 2024? Server Components, Edge Computing y el fin de los frameworks tradicionales.",
         createAt: "2024-03-23T09:00:00.000Z",
         author: MOCK_USERS["user-3"]
     },
@@ -84,5 +84,40 @@ export const MOCK_ARTICLES = [
         content: "Escribe código que tus compañeros (y tu yo del futuro) puedan entender. Naming, funciones pequeñas y principios SOLID.",
         createAt: "2024-03-18T16:55:00.000Z",
         author: MOCK_USERS["user-1"]
+    },
+    {
+        _id: "art-9",
+        title: "Docker para Desarrolladores",
+        content: "Entiende por qué Docker es indispensable hoy en día y cómo contenedorizar tus aplicaciones de frontend y backend.",
+        createAt: "2024-03-17T10:00:00.000Z",
+        author: MOCK_USERS["user-2"]
+    },
+    {
+        _id: "art-10",
+        title: "Introducción a TypeScript",
+        content: "Convierte tu código de JavaScript a TypeScript y descubre cómo los tipos estáticos pueden ahorrarte horas de depuración.",
+        createAt: "2024-03-16T15:30:00.000Z",
+        author: MOCK_USERS["user-3"]
+    },
+    {
+        _id: "art-11",
+        title: "PWA: Progressive Web Apps",
+        content: "Aprende a transformar tu sitio web en una aplicación móvil que funcione offline y envíe notificaciones push.",
+        createAt: "2024-03-15T09:00:00.000Z",
+        author: MOCK_USERS["user-1"]
+    },
+    {
+        _id: "art-12",
+        title: "GraphQL vs REST",
+        content: "Una comparativa honesta entre ambos estilos de API. ¿Cuándo usar GraphQL y cuándo quedarte con REST?",
+        createAt: "2024-03-14T12:00:00.000Z",
+        author: MOCK_USERS["user-2"]
+    },
+    {
+        _id: "art-13",
+        title: "Microfrontends: El Dilema",
+        content: "Exploramos si realmente necesitas una arquitectura de microfrontends o si un monolito bien estructurado es suficiente.",
+        createAt: "2024-03-13T18:45:00.000Z",
+        author: MOCK_USERS["user-3"]
     }
 ];

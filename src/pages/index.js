@@ -47,6 +47,14 @@ const HomePage = () => {
             <Head>
                 <title>Raices Home</title>
             </Head>
+            
+            <div className="alert alert-warning mt-4 text-center mx-3" role="alert">
+                <strong>Aviso de Infraestructura:</strong> El backend real está actualmente pausado. 
+                Los datos que ves son simulados (Mocks) para fines demostrativos. 
+                El código del backend funcional está disponible en: 
+                <a href="https://github.com/BillalbertCode/RaicesWorkSpace_Backend" target="_blank" rel="noopener noreferrer" className="ms-2 alert-link text-decoration-underline">GitHub: RaicesWorkSpace_Backend</a>.
+            </div>
+
             {loginStatus
                 ? <ArticleForm ></ArticleForm>
                 : <LayoutHome></LayoutHome>}
