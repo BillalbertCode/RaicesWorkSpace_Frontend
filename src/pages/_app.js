@@ -4,6 +4,15 @@ import { TokenProvider } from '@/contexts/TokenContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/global.css'
 import { Toaster } from "react-hot-toast";
+import { useEffect } from 'react';
+
+// Carga asíncrona del worker para no bloquear el bundle principal
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    const { worker } = require('../mocks/browser');
+    worker.start({
+        onUnhandledRequest: 'bypass', // Permite que otras peticiones pasen
+    });
+}
 
 function MyApp({ Component, pageProps }) {
   return (

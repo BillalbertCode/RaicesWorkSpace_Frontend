@@ -15,5 +15,13 @@
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1"
+  },
+  "devDependencies": {
+    "msw": "^2.12.14"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

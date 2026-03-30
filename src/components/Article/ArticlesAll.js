@@ -5,11 +5,12 @@
 import { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "@/contexts/ArticleContext";
 import ArticleCard from "./ArticleCard";
+
 /**
  * @param {string} endpoint - endpoint del array de los objetos articles
  */
 const ArticlesAll = ({ endpoint }) => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
     // Lista de articles del contexto
     const { articles, setArticles } = useContext(ArticleContext)
 
