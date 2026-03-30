@@ -6,8 +6,17 @@ const LayoutHome = () => {
     return (
         <div className="container my-3">
             <div className="row">
-                <aside className="col-md-5 align-items-center justify-content-center">  
-                    <Image sizes="100vh" width={100} height={100} alt="Raices Banner" className={`${stylesLayoutHome.asideImg} border rounded-pill img-fluid w-100`} src="/images/banner2.jfif" />
+                <aside className="col-md-5 d-flex align-items-center justify-content-center">  
+                    <Image 
+                        src="/images/banner2.webp"
+                        alt="Raices Banner"
+                        width={800}
+                        height={800}
+                        priority={true}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className={`${stylesLayoutHome.asideImg} border rounded-pill img-fluid w-100 h-auto`}
+                    />
+
 
                     <div className=" d-flex justify-content-center text-center m-3 gap-5">
                         <div title="Repositorio FrontEnd" className="flex-column">
